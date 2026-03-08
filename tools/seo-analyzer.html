@@ -1,1 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO Analyzer - SEO Tools Pro</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .tool-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 120px 0 60px; text-align: center; }
+        .tool-container { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem; }
+        .url-input {
+            background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            display: flex; gap: 1rem; margin-bottom: 2rem;
+        }
+        .url-input input { flex: 1; padding: 1rem; border: 2px solid #eee; border-radius: 8px; }
+        .score-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white; padding: 2rem; border-radius: 10px; text-align: center; margin-bottom: 2rem;
+        }
+        .score { font-size: 4rem; font-weight: 700; margin: 1rem 0; }
+        .issues-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-bottom: 2rem; }
+        .issue-card { background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
+        .issue-card.error { border-left: 4px solid #dc3545; }
+        .issue-card.warning { border-left: 4px solid #ffc107; }
+        .issue-card.success { border-left: 4px solid #28a745; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">[navigation]</nav>
 
+    <section class="tool-header">
+        <h1>SEO Analyzer</h1>
+        <p>Get detailed SEO analysis of any website</p>
+    </section>
+
+    <div class="tool-container">
+        <div class="url-input">
+            <input type="text" placeholder="Enter website URL (e.g., https://example.com)" id="urlInput">
+            <button onclick="analyzeSEO()"><i class="fas fa-search"></i> Analyze</button>
+        </div>
+
+        <div class="score-card">
+            <h2>Overall SEO Score</h2>
+            <div class="score">85/100</div>
+            <p>Good - Keep improving!</p>
+        </div>
+
+        <div class="issues-grid">
+            <div class="issue-card success"><h3>✅ Title Tag</h3><p>Perfect length (58 chars)</p></div>
+            <div class="issue-card success"><h3>✅ Meta Description</h3><p>Good (155 chars)</p></div>
+            <div class="issue-card warning"><h3>⚠️ Heading Structure</h3><p>Missing H1 tag</p></div>
+            <div class="issue-card error"><h3>❌ Images</h3><p>5 images missing alt text</p></div>
+            <div class="issue-card success"><h3>✅ Page Speed</h3><p>Load time: 1.2s</p></div>
+            <div class="issue-card warning"><h3>⚠️ Mobile Friendly</h3><p>Minor issues detected</p></div>
+        </div>
+    </div>
+
+    <script>
+        function analyzeSEO() {
+            let url = document.getElementById('urlInput').value;
+            if(url) alert('Analyzing: ' + url);
+        }
+    </script>
+</body>
+</html>
