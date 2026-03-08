@@ -1,1 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backlink Checker - SEO Tools Pro</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .tool-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 120px 0 60px; text-align: center; }
+        .tool-container { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem; }
+        .url-input {
+            background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            display: flex; gap: 1rem; margin-bottom: 2rem;
+        }
+        .url-input input { flex: 1; padding: 1rem; border: 2px solid #eee; border-radius: 8px; font-size: 1rem; }
+        .url-input button { padding: 1rem 2rem; background: #667eea; color: white; border: none; border-radius: 8px; cursor: pointer; }
+        .stats-cards { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; margin-bottom: 2rem; }
+        .stat-card { background: white; padding: 1.5rem; border-radius: 10px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
+        .stat-number { font-size: 2rem; font-weight: 700; color: #667eea; }
+        table { width: 100%; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
+        th { background: #f8fafc; padding: 1rem; text-align: left; }
+        td { padding: 1rem; border-bottom: 1px solid #eee; }
+        .domain { color: #667eea; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">[navigation]</nav>
 
+    <section class="tool-header">
+        <h1>Backlink Checker</h1>
+        <p>Analyze any website's backlink profile</p>
+    </section>
+
+    <div class="tool-container">
+        <div class="url-input">
+            <input type="text" placeholder="Enter domain (e.g., example.com)" id="domainInput">
+            <button onclick="checkBacklinks()"><i class="fas fa-search"></i> Check Backlinks</button>
+        </div>
+
+        <div class="stats-cards">
+            <div class="stat-card"><h3>Total Backlinks</h3><div class="stat-number">12,345</div></div>
+            <div class="stat-card"><h3>Referring Domains</h3><div class="stat-number">987</div></div>
+            <div class="stat-card"><h3>Domain Rating</h3><div class="stat-number">67</div></div>
+            <div class="stat-card"><h3>URL Rating</h3><div class="stat-number">42</div></div>
+        </div>
+
+        <table>
+            <tr><th>Backlink URL</th><th>Domain Rating</th><th>Anchor Text</th><th>Type</th><th>First Seen</th></tr>
+            <tr><td class="domain">example.com/article1</td><td>65</td><td>click here</td><td>Dofollow</td><td>2024-01-15</td></tr>
+            <tr><
