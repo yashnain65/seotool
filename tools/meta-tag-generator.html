@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>मेटा टैग जनरेटर - Free SEO Tools</title>
+    <title>Meta Tag Generator - Free SEO Tools</title>
     <link rel="stylesheet" href="../css/style.css">
     <style>
         .tool-container {
@@ -15,6 +15,16 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         
+        .tool-container h1 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tool-container > p {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+        
         .form-group {
             margin-bottom: 1.5rem;
         }
@@ -23,6 +33,7 @@
             display: block;
             margin-bottom: 0.5rem;
             font-weight: bold;
+            color: #555;
         }
         
         input, textarea, select {
@@ -31,6 +42,12 @@
             border: 1px solid #ddd;
             border-radius: 4px;
             font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
         }
         
         textarea {
@@ -38,17 +55,45 @@
             resize: vertical;
         }
         
+        .char-count {
+            text-align: right;
+            font-size: 0.875rem;
+            color: #666;
+            margin-top: 0.25rem;
+        }
+        
+        .char-count.warning {
+            color: #ffc107;
+        }
+        
+        .char-count.danger {
+            color: #dc3545;
+        }
+        
         .output {
             margin-top: 2rem;
-            padding: 1rem;
-            background: #f5f5f5;
-            border-radius: 4px;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
             display: none;
         }
         
+        .output h3 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
         .output pre {
+            background: #fff;
+            padding: 1rem;
+            border-radius: 4px;
+            border: 1px solid #dee2e6;
             white-space: pre-wrap;
             word-wrap: break-word;
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+            max-height: 400px;
+            overflow-y: auto;
         }
         
         .copy-btn {
@@ -59,6 +104,25 @@
         .copy-btn:hover {
             background: #218838;
         }
+        
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #2196f3;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-radius: 4px;
+        }
+        
+        .info-box p {
+            margin: 0;
+            color: #333;
+        }
+        
+        .info-box small {
+            display: block;
+            margin-top: 0.5rem;
+            color: #666;
+        }
     </style>
 </head>
 <body>
@@ -66,66 +130,118 @@
         <nav>
             <div class="logo">SEO Tools</div>
             <ul>
-                <li><a href="../index.html">होम</a></li>
-                <li><a href="keyword-research.html">कीवर्ड रिसर्च</a></li>
-                <li><a href="backlink-checker.html">बैकलिंक चेकर</a></li>
-                <li><a href="meta-tag-generator.html">मेटा टैग जनरेटर</a></li>
-                <li><a href="../about.html">हमारे बारे में</a></li>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="keyword-research.html">Keyword Research</a></li>
+                <li><a href="backlink-checker.html">Backlink Checker</a></li>
+                <li><a href="meta-tag-generator.html">Meta Tag Generator</a></li>
+                <li><a href="../about.html">About Us</a></li>
+                <li><a href="../contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
         <div class="tool-container">
-            <h1>🏷️ मेटा टैग जनरेटर</h1>
-            <p>अपनी वेबसाइट के लिए SEO फ्रेंडली मेटा टैग बनाएं</p>
+            <h1>🏷️ Meta Tag Generator</h1>
+            <p>Create SEO friendly meta tags for your website</p>
+            
+            <div class="info-box">
+                <p><strong>📌 Tips for better SEO:</strong></p>
+                <small>• Title should be 50-60 characters</small><br>
+                <small>• Meta description should be 150-160 characters</small><br>
+                <small>• Use relevant keywords naturally</small>
+            </div>
             
             <form id="metaTagForm">
                 <div class="form-group">
-                    <label for="pageTitle">पेज टाइटल (60-70 अक्षर)</label>
-                    <input type="text" id="pageTitle" placeholder="अपना पेज टाइटल दर्ज करें" required>
+                    <label for="pageTitle">Page Title (50-60 characters)</label>
+                    <input type="text" id="pageTitle" placeholder="Enter your page title" required maxlength="60">
+                    <div class="char-count" id="titleCount">60 characters remaining</div>
                 </div>
                 
                 <div class="form-group">
-                    <label for="metaDescription">मेटा डिस्क्रिप्शन (150-160 अक्षर)</label>
-                    <textarea id="metaDescription" placeholder="अपना मेटा डिस्क्रिप्शन दर्ज करें" required></textarea>
+                    <label for="metaDescription">Meta Description (150-160 characters)</label>
+                    <textarea id="metaDescription" placeholder="Enter your meta description" required maxlength="160"></textarea>
+                    <div class="char-count" id="descCount">160 characters remaining</div>
                 </div>
                 
                 <div class="form-group">
-                    <label for="metaKeywords">कीवर्ड (कॉमा से अलग करें)</label>
-                    <input type="text" id="metaKeywords" placeholder="seo, tools, free, website">
+                    <label for="metaKeywords">Keywords (separate with commas)</label>
+                    <input type="text" id="metaKeywords" placeholder="seo, tools, free, website optimization">
                 </div>
                 
                 <div class="form-group">
-                    <label for="author">लेखक (ऑप्शनल)</label>
-                    <input type="text" id="author" placeholder="लेखक का नाम">
+                    <label for="author">Author (Optional)</label>
+                    <input type="text" id="author" placeholder="Author name">
                 </div>
                 
                 <div class="form-group">
-                    <label for="viewport">व्यूपोर्ट सेटिंग</label>
+                    <label for="viewport">Viewport Settings</label>
                     <select id="viewport">
-                        <option value="width=device-width, initial-scale=1.0">Responsive (डिफ़ॉल्ट)</option>
-                        <option value="width=device-width, initial-scale=1.0, maximum-scale=1.0">Fixed</option>
+                        <option value="width=device-width, initial-scale=1.0">Responsive (Default)</option>
+                        <option value="width=device-width, initial-scale=1.0, maximum-scale=1.0">Fixed Scale</option>
                         <option value="width=1024">Desktop Only</option>
                     </select>
                 </div>
                 
-                <button type="submit" class="btn">मेटा टैग जनरेट करें</button>
+                <div class="form-group">
+                    <label for="robots">Robots Meta Tag</label>
+                    <select id="robots">
+                        <option value="index, follow">Index, Follow (Default)</option>
+                        <option value="noindex, follow">No Index, Follow</option>
+                        <option value="index, nofollow">Index, No Follow</option>
+                        <option value="noindex, nofollow">No Index, No Follow</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn">Generate Meta Tags</button>
             </form>
             
             <div class="output" id="output">
-                <h3>आपके मेटा टैग:</h3>
+                <h3>Your Generated Meta Tags:</h3>
                 <pre id="metaTags"></pre>
-                <button class="btn copy-btn" onclick="copyMetaTags()">कॉपी करें</button>
+                <button class="btn copy-btn" onclick="copyMetaTags()">Copy to Clipboard</button>
             </div>
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2024 SEO Tools. सभी अधिकार सुरक्षित</p>
+        <p>&copy; 2024 SEO Tools. All Rights Reserved</p>
     </footer>
 
     <script>
+        // Character counters
+        const titleInput = document.getElementById('pageTitle');
+        const descInput = document.getElementById('metaDescription');
+        const titleCount = document.getElementById('titleCount');
+        const descCount = document.getElementById('descCount');
+        
+        titleInput.addEventListener('input', function() {
+            const remaining = 60 - this.value.length;
+            titleCount.textContent = remaining + ' characters remaining';
+            
+            // Update color based on remaining characters
+            titleCount.className = 'char-count';
+            if (remaining < 10) {
+                titleCount.classList.add('danger');
+            } else if (remaining < 20) {
+                titleCount.classList.add('warning');
+            }
+        });
+        
+        descInput.addEventListener('input', function() {
+            const remaining = 160 - this.value.length;
+            descCount.textContent = remaining + ' characters remaining';
+            
+            descCount.className = 'char-count';
+            if (remaining < 10) {
+                descCount.classList.add('danger');
+            } else if (remaining < 20) {
+                descCount.classList.add('warning');
+            }
+        });
+        
+        // Form submission
         document.getElementById('metaTagForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -134,11 +250,14 @@
             const keywords = document.getElementById('metaKeywords').value;
             const author = document.getElementById('author').value;
             const viewport = document.getElementById('viewport').value;
+            const robots = document.getElementById('robots').value;
             
             let metaTags = '';
             
             // Basic Meta Tags
+            metaTags += `<!-- Primary Meta Tags -->\n`;
             metaTags += `<title>${title}</title>\n`;
+            metaTags += `<meta name="title" content="${title}">\n`;
             metaTags += `<meta name="description" content="${description}">\n`;
             
             if(keywords) {
@@ -150,25 +269,31 @@
             }
             
             // Technical Meta Tags
+            metaTags += `\n<!-- Technical Meta Tags -->\n`;
             metaTags += `<meta charset="UTF-8">\n`;
             metaTags += `<meta name="viewport" content="${viewport}">\n`;
             metaTags += `<meta http-equiv="X-UA-Compatible" content="IE=edge">\n`;
+            metaTags += `<meta name="robots" content="${robots}">\n`;
             
             // Social Media Meta Tags (Open Graph)
-            metaTags += `\n<!-- Facebook Open Graph -->\n`;
+            metaTags += `\n<!-- Open Graph / Facebook -->\n`;
+            metaTags += `<meta property="og:type" content="website">\n`;
+            metaTags += `<meta property="og:url" content="${window.location.origin}">\n`;
             metaTags += `<meta property="og:title" content="${title}">\n`;
             metaTags += `<meta property="og:description" content="${description}">\n`;
-            metaTags += `<meta property="og:type" content="website">\n`;
-            metaTags += `<meta property="og:url" content="${window.location.href}">\n`;
             
             // Twitter Cards
-            metaTags += `\n<!-- Twitter Cards -->\n`;
-            metaTags += `<meta name="twitter:card" content="summary_large_image">\n`;
-            metaTags += `<meta name="twitter:title" content="${title}">\n`;
-            metaTags += `<meta name="twitter:description" content="${description}">\n`;
+            metaTags += `\n<!-- Twitter -->\n`;
+            metaTags += `<meta property="twitter:card" content="summary_large_image">\n`;
+            metaTags += `<meta property="twitter:url" content="${window.location.origin}">\n`;
+            metaTags += `<meta property="twitter:title" content="${title}">\n`;
+            metaTags += `<meta property="twitter:description" content="${description}">\n`;
             
             document.getElementById('metaTags').textContent = metaTags;
             document.getElementById('output').style.display = 'block';
+            
+            // Scroll to output
+            document.getElementById('output').scrollIntoView({ behavior: 'smooth' });
         });
         
         function copyMetaTags() {
@@ -178,10 +303,10 @@
         
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(function() {
-                alert('मेटा टैग कॉपी हो गए!');
+                alert('Meta tags copied to clipboard!');
             }, function(err) {
                 console.error('Could not copy text: ', err);
-                alert('कॉपी करने में समस्या हुई');
+                alert('Failed to copy. Please try again.');
             });
         }
     </script>
