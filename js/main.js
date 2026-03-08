@@ -2,14 +2,19 @@
 
 // Mobile menu toggle
 document.addEventListener('DOMContentLoaded', function() {
-    // Add mobile menu functionality if needed
     console.log('SEO Tools Website Loaded');
 });
 
-// Form validation
+// URL validation
 function validateUrl(url) {
     const pattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
     return pattern.test(url);
+}
+
+// Email validation
+function validateEmail(email) {
+    const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return pattern.test(email);
 }
 
 // Show loading spinner
@@ -28,5 +33,13 @@ function copyToClipboard(text) {
         alert('Copied to clipboard!');
     }, function(err) {
         console.error('Could not copy text: ', err);
+        alert('Failed to copy');
     });
+}
+
+// Character counter
+function updateCharCount(element, maxLength) {
+    const currentLength = element.value.length;
+    const remaining = maxLength - currentLength;
+    return remaining;
 }
