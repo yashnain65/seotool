@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO Blog - Latest Tips & Strategies | SEO Tools Pro</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 0 60px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .blog-search {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .blog-search input {
+            flex: 1;
+            padding: 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .blog-search button {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .blog-search button:hover {
+            transform: translateY(-2px);
+        }
+
+        .categories {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .category-tag {
+            padding: 0.5rem 1.5rem;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 30px;
+            color: #666;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .category-tag:hover,
+        .category-tag.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-color: transparent;
+        }
+
+        .blog-grid {
+            max-width: 1400px;
+            margin: 4rem auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(99,102,241,0.1);
+        }
+
+        .blog-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .blog-card:hover .blog-image img {
+            transform: scale(1.1);
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .blog-meta i {
+            margin-right: 0.25rem;
+        }
+
+        .blog-category {
+            display: inline-block;
+            padding: 0.25rem 1rem;
+            background: #f3f4f6;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .blog-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .blog-content h3 a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .blog-content h3 a:hover {
+            color: #667eea;
+        }
+
+        .blog-content p {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .read-more {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .read-more:hover {
+            gap: 1rem;
+        }
+
+        .featured-post {
+            max-width: 1400px;
+            margin: 4rem auto;
+            padding: 2rem;
+            background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+            border-radius: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .featured-content .badge {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .featured-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .featured-content p {
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .featured-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .author-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .author-info img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .author-details h4 {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .author-details p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 4rem 0;
+        }
+
+        .page-link {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            color: #666;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .page-link:hover,
+        .page-link.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-color: transparent;
+        }
+
+        .newsletter-section {
+            max-width: 600px;
+            margin: 4rem auto;
+            padding: 3rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .newsletter-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-section p {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .newsletter-form-large {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .newsletter-form-large input {
+            flex: 1;
+            padding: 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .newsletter-form-large button {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .newsletter-form-large button:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                <span>SEO Tools Pro</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tools/">Tools</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <a href="login.html" class="btn-outline">Login</a>
+                <a href="signup.html" class="btn-primary">Sign Up Free</a>
+            </div>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>SEO Blog & Resources</h1>
+        <p>Latest tips, strategies, and insights to improve your SEO</p>
+    </section>
+
+    <!-- Search Bar -->
+    <div class="blog-search">
+        <input type="text" placeholder="Search articles...">
+        <button><i class="fas fa-search"></i></button>
+    </div>
+
+    <!-- Categories -->
+    <div class="categories">
+        <a href="#" class="category-tag active">All</a>
+        <a href="#" class="category-tag">Keyword Research</a>
+        <a href="#" class="category-tag">Link Building</a>
+        <a href="#" class="category-tag">Technical SEO</a>
+        <a href="#" class="category-tag">Content Marketing</a>
+        <a href="#" class="category-tag">Local SEO</a>
+        <a href="#" class="category-tag">SEO News</a>
+        <a href="#" class="category-tag">Case Studies</a>
+        <a href="#" class="category-tag">Guides</a>
+    </div>
+
+    <!-- Featured Post -->
+    <div class="featured-post">
+        <div class="featured-content">
+            <span class="badge">Featured Article</span>
+            <h2>Complete Guide to SEO in 2024: Everything You Need to Know</h2>
+            <p>Discover the latest SEO trends, algorithm updates, and strategies that will dominate 2024. From Core Web Vitals to AI-powered search, learn how to stay ahead of the competition.</p>
+            
+            <div class="author-info">
+                <img src="https://via.placeholder.com/50" alt="Author">
+                <div class="author-details">
+                    <h4>John Smith</h4>
+                    <p>SEO Expert • 10 min read</p>
+                </div>
+            </div>
+            
+            <a href="#" class="read-more">Read Full Article <i class="fas fa-arrow-right"></i></a>
+        </div>
+        
+        <div class="featured-image">
+            <img src="https://via.placeholder.com/600x400" alt="Featured Post">
+        </div>
+    </div>
+
+    <!-- Blog Grid -->
+    <div class="blog-grid">
+        <!-- Blog Post 1 -->
+        <div class="blog-card">
+            <div class="blog-image">
+                <img src="https://via.placeholder.com/400x200" alt="Blog Post">
+            </div>
+            <div class="blog-content">
+                <div class="blog-meta">
+                    <span><i class="far fa-calendar"></i> Mar 15, 2024</span>
+                    <span><i class="far fa-clock"></i> 5 min read</span>
+                </div>
+                <span class="blog-category">Keyword Research</span>
+                <h3><a href="#">How to Find Long-Tail Keywords That Actually Convert</a></h3>
+                <p>Learn the secrets to finding profitable long-tail keywords that drive targeted traffic and boost conversions.</p>
+                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <!-- Blog Post 2 -->
+        <div class="blog-card">
+            <div class="blog-image">
+                <img src="https://via.placeholder.com/400x200" alt="Blog Post">
+            </div>
+            <div class="blog-content">
+                <div class="blog-meta">
+                    <span><i class="far fa-calendar"></i> Mar 12, 2024</span>
+                    <span><i class="far fa-clock"></i> 7 min read</span>
+                </div>
+                <span class="blog-category">Link Building</span>
+                <h3><a href="#">10 Proven Link Building Strategies That Still Work in 2024</a></h3>
+                <p>Discover ethical and effective link building techniques that can help you earn high-quality backlinks.</p>
+                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <!-- Blog Post 3 -->
+        <div class="blog-card">
+            <div class="blog-image">
+                <img src="https://via.placeholder.com/400x200" alt="Blog Post">
+            </div>
+            <div class="blog-content">
+                <div class="blog-meta">
+                    <span><i class="far fa-calendar"></i> Mar 10, 2024</span>
+                    <span><i class="far fa-clock"></i> 6 min read</span>
+                </div>
+                <span class="blog-category">Technical SEO</span>
+                <h3><a href="#">Core Web Vitals: Complete Optimization Guide</a></h3>
+                <p>Master Google's Core Web Vitals with our comprehensive guide to improving LCP, FID, and CLS scores.</p>
+                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <!-- Blog Post 4 -->
+        <div class="blog-card">
+            <div class="blog-image">
+                <img src="https://via.placeholder.com/400x200" alt="Blog Post">
+            </div>
+            <div class="blog-content">
+                <div class="blog-meta">
+                    <span><i class="far fa-calendar"></i> Mar 8, 2024</span>
+                    <span><i class="far fa-clock"></i> 4 min read</span>
+                </div>
+                <span class="blog-category">Content Marketing</span>
+                <h3><a href="#">How to Create SEO-Friendly Content That Ranks #1</a></h3>
+                <p>Learn the framework for creating content that both users and search engines love.</p>
+                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <!-- Blog Post 5 -->
+        <div class="blog-card">
+            <div class="blog-image">
+                <img src="https://via.placeholder.com/400x200" alt="Blog Post">
+            </div>
+            <div class="blog-content">
+                <div class="blog-meta">
+                    <span><i class="far fa-calendar"></i> Mar 5, 2024</span>
+                    <span><i class="far fa-clock"></i> 8 min read</span>
+                </div>
+                <span class="blog-category">Local SEO</span>
+                <h3><a href="#">Local SEO Checklist: Dominate Local Search in 2024</a></h3>
+                <p>A step-by-step checklist to improve your local search visibility and attract more customers.</p>
+                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <!-- Blog Post 6 -->
+        <div class="blog-card">
+            <div class="blog-image">
+                <img src="https://via.placeholder.com/400x200" alt="Blog Post">
+            </div>
+            <div class="blog-content">
+                <div class="blog-meta">
+                    <span><i class="far fa-calendar"></i> Mar 3, 2024</span>
+                    <span><i class="far fa-clock"></i> 5 min read</span>
+                </div>
+                <span class="blog-category">SEO News</span>
+                <h3><a href="#">Google's March 2024 Algorithm Update: What You Need to Know</a></h3>
+                <p>Analysis of the latest Google algorithm update and how it might affect your rankings.</p>
+                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+        <a href="#" class="page-link"><i class="fas fa-chevron-left"></i></a>
+        <a href="#" class="page-link active">1</a>
+        <a href="#" class="page-link">2</a>
+        <a href="#" class="page-link">3</a>
+        <a href="#" class="page-link">4</a>
+        <a href="#" class="page-link">5</a>
+        <a href="#" class="page-link"><i class="fas fa-chevron-right"></i></a>
+    </div>
+
+    <!-- Newsletter Section -->
+    <div class="newsletter-section">
+        <h3>Subscribe to Our Newsletter</h3>
+        <p>Get the latest SEO tips and strategies delivered straight to your inbox</p>
+        <form class="newsletter-form-large">
+            <input type="email" placeholder="Enter your email address">
+            <button type="submit">Subscribe</button>
+        </form>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">We respect your privacy. Unsubscribe at any time.</p>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <i class="fas fa-chart-line"></i>
+                    <span>SEO Tools Pro</span>
+                </div>
+                <p>The most comprehensive suite of free SEO tools to help you improve your website's search engine rankings.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Tools</h4>
+                <ul>
+                    <li><a href="#">Keyword Research</a></li>
+                    <li><a href="#">SEO Analyzer</a></li>
+                    <li><a href="#">Backlink Checker</a></li>
+                    <li><a href="#">Rank Tracker</a></li>
+                    <li><a href="#">Site Audit</a></li>
+                    <li><a href="#">Competitor Analysis</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Partners</a></li>
+                    <li><a href="#">Affiliates</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">API Documentation</a></li>
+                    <li><a href="#">Community</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Newsletter</h4>
+                <p>Get latest SEO tips and updates</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address">
+                    <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-bottom-content">
+                <p>&copy; 2024 SEO Tools Pro. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                    <a href="#">Cookies</a>
+                    <a href="#">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
