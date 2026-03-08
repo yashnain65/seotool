@@ -34,46 +34,46 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Professional SEO Tools to <span class="highlight">Boost Your Rankings</span></h1>
-            <p>Get access to 50+ free SEO tools including keyword research, backlink analysis, site audit, rank tracking and more. Used by 100,000+ marketers worldwide.</p>
-            <div class="hero-buttons">
-                <a href="#tools" class="btn-primary btn-large">Explore All Tools</a>
-                <a href="#how-it-works" class="btn-outline btn-large">How It Works</a>
-            </div>
-            <div class="trust-badges">
-                <span><i class="fas fa-check-circle"></i> No Credit Card</span>
-                <span><i class="fas fa-check-circle"></i> 100% Free</span>
-                <span><i class="fas fa-check-circle"></i> Unlimited Usage</span>
-            </div>
+  <!-- Hero Section with Image -->
+<section class="hero" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; max-width: 1400px; margin: 100px auto 50px; padding: 0 2rem;">
+    
+    <!-- Left Side - Text -->
+    <div class="hero-content">
+        <h1 style="font-size: 3rem; line-height: 1.2; margin-bottom: 1.5rem;">
+            Professional SEO Tools to <span style="color: #667eea;">Boost Your Rankings</span>
+        </h1>
+        <p style="font-size: 1.2rem; color: #666; margin-bottom: 2rem;">
+            Get access to 50+ free SEO tools including keyword research, backlink analysis, site audit, rank tracking and more.
+        </p>
+        <div style="display: flex; gap: 1rem;">
+            <a href="#tools" style="padding: 1rem 2rem; background: #667eea; color: white; text-decoration: none; border-radius: 8px;">Explore Tools</a>
+            <a href="#how-it-works" style="padding: 1rem 2rem; border: 2px solid #667eea; color: #667eea; text-decoration: none; border-radius: 8px;">How It Works</a>
         </div>
-        <div class="hero-image">
-            <img src="https://via.placeholder.com/600x400" alt="SEO Tools Dashboard">
-        </div>
-    </section>
+    </div>
+    
+    <!-- Right Side - Image -->
+    <div class="hero-image" style="text-align: center;">
+        <img src="https://cdn-icons-png.flaticon.com/512/1055/1055683.png" 
+             alt="SEO Tools" 
+             style="width: 100%; max-width: 400px; animation: float 3s ease-in-out infinite;">
+    </div>
+</section>
 
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="stat-item">
-            <h3>50+</h3>
-            <p>SEO Tools</p>
-        </div>
-        <div class="stat-item">
-            <h3>100K+</h3>
-            <p>Happy Users</p>
-        </div>
-        <div class="stat-item">
-            <h3>1M+</h3>
-            <p>Analyses Done</p>
-        </div>
-        <div class="stat-item">
-            <h3>4.9/5</h3>
-            <p>User Rating</p>
-        </div>
-    </section>
+<!-- Animation CSS -->
+<style>
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
 
+@media (max-width: 768px) {
+    .hero {
+        grid-template-columns: 1fr !important;
+        text-align: center;
+    }
+}
+</style>
     <!-- Featured Tools Section -->
     <section id="tools" class="featured-tools">
         <div class="section-header">
