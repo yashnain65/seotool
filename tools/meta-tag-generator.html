@@ -3,211 +3,254 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meta Tag Generator - Free SEO Tools</title>
+    <title>Meta Tag Generator - SEO Tools Pro</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        .tool-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 0 60px;
+            text-align: center;
+        }
         .tool-container {
-            max-width: 800px;
-            margin: 100px auto 50px;
-            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        .generator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        .form-card {
             background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
         }
-        
-        .tool-container h1 {
-            color: #333;
-            margin-bottom: 0.5rem;
-        }
-        
-        .tool-container > p {
-            color: #666;
-            margin-bottom: 2rem;
-        }
-        
         .form-group {
             margin-bottom: 1.5rem;
         }
-        
-        label {
+        .form-group label {
             display: block;
             margin-bottom: 0.5rem;
-            font-weight: bold;
-            color: #555;
+            font-weight: 600;
+            color: #333;
         }
-        
-        input, textarea, select {
+        .form-group input, .form-group textarea, .form-group select {
             width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            padding: 0.8rem;
+            border: 2px solid #eee;
+            border-radius: 5px;
             font-size: 1rem;
-            transition: border-color 0.3s;
+            transition: all 0.3s;
         }
-        
-        input:focus, textarea:focus, select:focus {
-            outline: none;
+        .form-group input:focus, .form-group textarea:focus {
             border-color: #667eea;
+            outline: none;
         }
-        
-        textarea {
+        .form-group textarea {
             height: 100px;
             resize: vertical;
         }
-        
         .char-count {
             text-align: right;
-            font-size: 0.875rem;
+            font-size: 0.85rem;
             color: #666;
-            margin-top: 0.25rem;
+            margin-top: 0.3rem;
         }
-        
         .char-count.warning {
             color: #ffc107;
         }
-        
         .char-count.danger {
             color: #dc3545;
         }
-        
-        .output {
-            margin-top: 2rem;
-            padding: 1.5rem;
-            background: #f8f9fa;
-            border-radius: 8px;
-            display: none;
+        .output-card {
+            background: #f8fafc;
+            padding: 2rem;
+            border-radius: 10px;
+            border: 2px dashed #667eea;
         }
-        
-        .output h3 {
+        .output-card h3 {
             margin-bottom: 1rem;
             color: #333;
         }
-        
-        .output pre {
-            background: #fff;
-            padding: 1rem;
-            border-radius: 4px;
-            border: 1px solid #dee2e6;
+        .meta-output {
+            background: #2d3748;
+            color: #fff;
+            padding: 1.5rem;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
             white-space: pre-wrap;
             word-wrap: break-word;
-            font-family: 'Courier New', monospace;
-            font-size: 0.875rem;
+            margin-bottom: 1rem;
             max-height: 400px;
             overflow-y: auto;
         }
-        
-        .copy-btn {
-            margin-top: 1rem;
-            background: #28a745;
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
         }
-        
-        .copy-btn:hover {
-            background: #218838;
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
         }
-        
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        .preview-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            margin-top: 2rem;
+        }
+        .preview-title {
+            font-size: 1.5rem;
+            color: #1e0fbe;
+            margin-bottom: 0.5rem;
+        }
+        .preview-url {
+            color: #006621;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        .preview-description {
+            color: #545454;
+            font-size: 0.9rem;
+        }
         .info-box {
             background: #e7f3ff;
             border-left: 4px solid #2196f3;
             padding: 1rem;
             margin-bottom: 2rem;
-            border-radius: 4px;
+            border-radius: 5px;
         }
-        
-        .info-box p {
-            margin: 0;
-            color: #333;
-        }
-        
-        .info-box small {
-            display: block;
-            margin-top: 0.5rem;
-            color: #666;
+        @media (max-width: 768px) {
+            .generator-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">SEO Tools</div>
-            <ul>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                <span>SEO Tools Pro</span>
+            </div>
+            <ul class="nav-menu">
                 <li><a href="../index.html">Home</a></li>
-                <li><a href="keyword-research.html">Keyword Research</a></li>
-                <li><a href="backlink-checker.html">Backlink Checker</a></li>
-                <li><a href="meta-tag-generator.html">Meta Tag Generator</a></li>
-                <li><a href="../about.html">About Us</a></li>
+                <li><a href="../tools.html" class="active">Tools</a></li>
+                <li><a href="../pricing.html">Pricing</a></li>
+                <li><a href="../about.html">About</a></li>
                 <li><a href="../contact.html">Contact</a></li>
             </ul>
-        </nav>
-    </header>
-
-    <main>
-        <div class="tool-container">
-            <h1>🏷️ Meta Tag Generator</h1>
-            <p>Create SEO friendly meta tags for your website</p>
-            
-            <div class="info-box">
-                <p><strong>📌 Tips for better SEO:</strong></p>
-                <small>• Title should be 50-60 characters</small><br>
-                <small>• Meta description should be 150-160 characters</small><br>
-                <small>• Use relevant keywords naturally</small>
-            </div>
-            
-            <form id="metaTagForm">
-                <div class="form-group">
-                    <label for="pageTitle">Page Title (50-60 characters)</label>
-                    <input type="text" id="pageTitle" placeholder="Enter your page title" required maxlength="60">
-                    <div class="char-count" id="titleCount">60 characters remaining</div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="metaDescription">Meta Description (150-160 characters)</label>
-                    <textarea id="metaDescription" placeholder="Enter your meta description" required maxlength="160"></textarea>
-                    <div class="char-count" id="descCount">160 characters remaining</div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="metaKeywords">Keywords (separate with commas)</label>
-                    <input type="text" id="metaKeywords" placeholder="seo, tools, free, website optimization">
-                </div>
-                
-                <div class="form-group">
-                    <label for="author">Author (Optional)</label>
-                    <input type="text" id="author" placeholder="Author name">
-                </div>
-                
-                <div class="form-group">
-                    <label for="viewport">Viewport Settings</label>
-                    <select id="viewport">
-                        <option value="width=device-width, initial-scale=1.0">Responsive (Default)</option>
-                        <option value="width=device-width, initial-scale=1.0, maximum-scale=1.0">Fixed Scale</option>
-                        <option value="width=1024">Desktop Only</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="robots">Robots Meta Tag</label>
-                    <select id="robots">
-                        <option value="index, follow">Index, Follow (Default)</option>
-                        <option value="noindex, follow">No Index, Follow</option>
-                        <option value="index, nofollow">Index, No Follow</option>
-                        <option value="noindex, nofollow">No Index, No Follow</option>
-                    </select>
-                </div>
-                
-                <button type="submit" class="btn">Generate Meta Tags</button>
-            </form>
-            
-            <div class="output" id="output">
-                <h3>Your Generated Meta Tags:</h3>
-                <pre id="metaTags"></pre>
-                <button class="btn copy-btn" onclick="copyMetaTags()">Copy to Clipboard</button>
+            <div class="nav-buttons">
+                <a href="../login.html" class="btn-outline">Login</a>
+                <a href="../signup.html" class="btn-primary">Sign Up</a>
             </div>
         </div>
-    </main>
+    </nav>
 
-    <footer>
-        <p>&copy; 2024 SEO Tools. All Rights Reserved</p>
-    </footer>
+    <section class="tool-header">
+        <h1>Meta Tag Generator</h1>
+        <p>Create SEO-optimized meta tags for your website</p>
+    </section>
+
+    <div class="tool-container">
+        <div class="info-box">
+            <strong>📌 Tips for better SEO:</strong>
+            <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
+                <li>Title should be 50-60 characters</li>
+                <li>Meta description should be 150-160 characters</li>
+                <li>Use your primary keyword naturally</li>
+            </ul>
+        </div>
+
+        <div class="generator-grid">
+            <!-- Input Form -->
+            <div class="form-card">
+                <h3 style="margin-bottom: 1.5rem;">Enter Your Details</h3>
+                <form id="metaForm">
+                    <div class="form-group">
+                        <label for="pageTitle">Page Title</label>
+                        <input type="text" id="pageTitle" placeholder="e.g., Best SEO Tools 2024" maxlength="70">
+                        <div class="char-count" id="titleCount">70 characters remaining</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="metaDescription">Meta Description</label>
+                        <textarea id="metaDescription" placeholder="Describe your page in 150-160 characters" maxlength="160"></textarea>
+                        <div class="char-count" id="descCount">160 characters remaining</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="metaKeywords">Keywords (comma separated)</label>
+                        <input type="text" id="metaKeywords" placeholder="seo, tools, keyword research">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="author">Author (Optional)</label>
+                        <input type="text" id="author" placeholder="Author name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="viewport">Viewport Setting</label>
+                        <select id="viewport">
+                            <option value="width=device-width, initial-scale=1.0">Responsive (Default)</option>
+                            <option value="width=device-width, initial-scale=1.0, maximum-scale=1.0">Fixed Scale</option>
+                            <option value="width=1024">Desktop Only</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="robots">Robots Directive</label>
+                        <select id="robots">
+                            <option value="index, follow">Index, Follow (Default)</option>
+                            <option value="noindex, follow">No Index, Follow</option>
+                            <option value="index, nofollow">Index, No Follow</option>
+                            <option value="noindex, nofollow">No Index, No Follow</option>
+                        </select>
+                    </div>
+
+                    <button type="button" class="btn-primary" style="width: 100%;" onclick="generateMetaTags()">Generate Meta Tags</button>
+                </form>
+            </div>
+
+            <!-- Output -->
+            <div class="output-card">
+                <h3>Generated Meta Tags</h3>
+                <div class="meta-output" id="metaOutput">
+                    <!-- Meta tags will appear here -->
+                    Enter your details and click Generate
+                </div>
+                <div class="action-buttons">
+                    <button class="btn-primary" style="flex: 1;" onclick="copyMetaTags()">Copy to Clipboard</button>
+                    <button class="btn-secondary" style="flex: 1;" onclick="resetForm()">Reset</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Google Preview -->
+        <div class="preview-card">
+            <h3 style="margin-bottom: 1rem;">Google Search Preview</h3>
+            <div id="googlePreview">
+                <div class="preview-title">SEO Tools Pro - Best SEO Tools 2024</div>
+                <div class="preview-url">https://www.seotoolspro.com/</div>
+                <div class="preview-description">Discover the best SEO tools for keyword research, backlink analysis, and rank tracking. Free and professional tools for website optimization.</div>
+            </div>
+        </div>
+    </div>
 
     <script>
         // Character counters
@@ -215,45 +258,33 @@
         const descInput = document.getElementById('metaDescription');
         const titleCount = document.getElementById('titleCount');
         const descCount = document.getElementById('descCount');
-        
+
         titleInput.addEventListener('input', function() {
-            const remaining = 60 - this.value.length;
+            const remaining = 70 - this.value.length;
             titleCount.textContent = remaining + ' characters remaining';
-            
-            // Update color based on remaining characters
             titleCount.className = 'char-count';
-            if (remaining < 10) {
-                titleCount.classList.add('danger');
-            } else if (remaining < 20) {
-                titleCount.classList.add('warning');
-            }
+            if (remaining < 10) titleCount.classList.add('danger');
+            else if (remaining < 20) titleCount.classList.add('warning');
         });
-        
+
         descInput.addEventListener('input', function() {
             const remaining = 160 - this.value.length;
             descCount.textContent = remaining + ' characters remaining';
-            
             descCount.className = 'char-count';
-            if (remaining < 10) {
-                descCount.classList.add('danger');
-            } else if (remaining < 20) {
-                descCount.classList.add('warning');
-            }
+            if (remaining < 10) descCount.classList.add('danger');
+            else if (remaining < 20) descCount.classList.add('warning');
         });
-        
-        // Form submission
-        document.getElementById('metaTagForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const title = document.getElementById('pageTitle').value;
-            const description = document.getElementById('metaDescription').value;
+
+        function generateMetaTags() {
+            const title = document.getElementById('pageTitle').value || 'Your Page Title';
+            const description = document.getElementById('metaDescription').value || 'Your meta description goes here';
             const keywords = document.getElementById('metaKeywords').value;
             const author = document.getElementById('author').value;
             const viewport = document.getElementById('viewport').value;
             const robots = document.getElementById('robots').value;
-            
+
             let metaTags = '';
-            
+
             // Basic Meta Tags
             metaTags += `<!-- Primary Meta Tags -->\n`;
             metaTags += `<title>${title}</title>\n`;
@@ -267,49 +298,62 @@
             if(author) {
                 metaTags += `<meta name="author" content="${author}">\n`;
             }
-            
+
             // Technical Meta Tags
             metaTags += `\n<!-- Technical Meta Tags -->\n`;
             metaTags += `<meta charset="UTF-8">\n`;
             metaTags += `<meta name="viewport" content="${viewport}">\n`;
             metaTags += `<meta http-equiv="X-UA-Compatible" content="IE=edge">\n`;
             metaTags += `<meta name="robots" content="${robots}">\n`;
-            
-            // Social Media Meta Tags (Open Graph)
+
+            // Open Graph Tags (Facebook)
             metaTags += `\n<!-- Open Graph / Facebook -->\n`;
             metaTags += `<meta property="og:type" content="website">\n`;
-            metaTags += `<meta property="og:url" content="${window.location.origin}">\n`;
+            metaTags += `<meta property="og:url" content="https://yourdomain.com/">\n`;
             metaTags += `<meta property="og:title" content="${title}">\n`;
             metaTags += `<meta property="og:description" content="${description}">\n`;
-            
-            // Twitter Cards
+            metaTags += `<meta property="og:image" content="https://yourdomain.com/image.jpg">\n`;
+
+            // Twitter Tags
             metaTags += `\n<!-- Twitter -->\n`;
             metaTags += `<meta property="twitter:card" content="summary_large_image">\n`;
-            metaTags += `<meta property="twitter:url" content="${window.location.origin}">\n`;
+            metaTags += `<meta property="twitter:url" content="https://yourdomain.com/">\n`;
             metaTags += `<meta property="twitter:title" content="${title}">\n`;
             metaTags += `<meta property="twitter:description" content="${description}">\n`;
-            
-            document.getElementById('metaTags').textContent = metaTags;
-            document.getElementById('output').style.display = 'block';
-            
-            // Scroll to output
-            document.getElementById('output').scrollIntoView({ behavior: 'smooth' });
-        });
-        
-        function copyMetaTags() {
-            const metaTags = document.getElementById('metaTags').textContent;
-            copyToClipboard(metaTags);
+            metaTags += `<meta property="twitter:image" content="https://yourdomain.com/image.jpg">\n`;
+
+            // Display in output
+            document.getElementById('metaOutput').textContent = metaTags;
+
+            // Update Google Preview
+            updatePreview(title, description);
         }
-        
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(function() {
+
+        function updatePreview(title, description) {
+            const previewDiv = document.getElementById('googlePreview');
+            previewDiv.innerHTML = `
+                <div class="preview-title">${title.substring(0, 60)}</div>
+                <div class="preview-url">https://www.yourwebsite.com/</div>
+                <div class="preview-description">${description.substring(0, 160)}</div>
+            `;
+        }
+
+        function copyMetaTags() {
+            const metaTags = document.getElementById('metaOutput').textContent;
+            navigator.clipboard.writeText(metaTags).then(() => {
                 alert('Meta tags copied to clipboard!');
-            }, function(err) {
-                console.error('Could not copy text: ', err);
+            }).catch(() => {
                 alert('Failed to copy. Please try again.');
             });
         }
+
+        function resetForm() {
+            document.getElementById('metaForm').reset();
+            document.getElementById('metaOutput').textContent = 'Enter your details and click Generate';
+            document.getElementById('titleCount').textContent = '70 characters remaining';
+            document.getElementById('descCount').textContent = '160 characters remaining';
+            updatePreview('SEO Tools Pro - Best SEO Tools 2024', 'Discover the best SEO tools for keyword research, backlink analysis, and rank tracking. Free and professional tools for website optimization.');
+        }
     </script>
-    <script src="../js/main.js"></script>
 </body>
 </html>
