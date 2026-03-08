@@ -1140,4 +1140,242 @@
                             </div>
                         </li>
                         <li class="activity-item">
-                            <div class="activity-icon"><i class="fas fa-file
+                            <div class="activity-icon"><i class="fas fa-file-pdf"></i></div>
+                            <div class="activity-content">
+                                <div class="activity-text">Monthly report generated</div>
+                                <div class="activity-time">Yesterday</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="activity-card">
+                    <div class="card-header">
+                        <h3>Tasks</h3>
+                        <a href="#" class="view-all">Add Task</a>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-content">
+                            <div class="task-title">Complete site audit for client</div>
+                            <div class="task-date">Due today</div>
+                        </div>
+                        <span class="task-priority priority-high">High</span>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox checked" onclick="toggleTask(this)"></div>
+                        <div class="task-content">
+                            <div class="task-title completed">Update keyword research</div>
+                            <div class="task-date">Completed</div>
+                        </div>
+                        <span class="task-priority priority-medium">Medium</span>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-content">
+                            <div class="task-title">Prepare monthly report</div>
+                            <div class="task-date">Tomorrow</div>
+                        </div>
+                        <span class="task-priority priority-low">Low</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quick-actions">
+                <a href="#" class="quick-action-card">
+                    <div class="quick-action-icon"><i class="fas fa-search"></i></div>
+                    <div class="quick-action-title">New Audit</div>
+                    <div class="quick-action-desc">Run site audit</div>
+                </a>
+                <a href="#" class="quick-action-card">
+                    <div class="quick-action-icon"><i class="fas fa-plus-circle"></i></div>
+                    <div class="quick-action-title">Add Keywords</div>
+                    <div class="quick-action-desc">Track more keywords</div>
+                </a>
+                <a href="#" class="quick-action-card">
+                    <div class="quick-action-icon"><i class="fas fa-file-export"></i></div>
+                    <div class="quick-action-title">Generate Report</div>
+                    <div class="quick-action-desc">PDF or CSV</div>
+                </a>
+                <a href="#" class="quick-action-card">
+                    <div class="quick-action-icon"><i class="fas fa-users"></i></div>
+                    <div class="quick-action-title">Invite Team</div>
+                    <div class="quick-action-desc">Collaborate</div>
+                </a>
+            </div>
+
+            <div class="keywords-section">
+                <div class="section-header">
+                    <h3>Top Performing Keywords</h3>
+                    <a href="#" class="view-all">View All</a>
+                </div>
+                <div class="keywords-grid">
+                    <div class="keyword-item">
+                        <div class="keyword-name">seo tools</div>
+                        <div class="keyword-rank">
+                            <span class="rank-position">#4</span>
+                            <span class="rank-change up"><i class="fas fa-arrow-up"></i> 3</span>
+                        </div>
+                    </div>
+                    <div class="keyword-item">
+                        <div class="keyword-name">backlink checker</div>
+                        <div class="keyword-rank">
+                            <span class="rank-position">#12</span>
+                            <span class="rank-change down"><i class="fas fa-arrow-down"></i> 2</span>
+                        </div>
+                    </div>
+                    <div class="keyword-item">
+                        <div class="keyword-name">keyword research</div>
+                        <div class="keyword-rank">
+                            <span class="rank-position">#8</span>
+                            <span class="rank-change up"><i class="fas fa-arrow-up"></i> 5</span>
+                        </div>
+                    </div>
+                    <div class="keyword-item">
+                        <div class="keyword-name">seo analyzer</div>
+                        <div class="keyword-rank">
+                            <span class="rank-position">#15</span>
+                            <span class="rank-change up"><i class="fas fa-arrow-up"></i> 1</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="projects-section">
+                <div class="section-header">
+                    <h3>Your Projects</h3>
+                    <button class="add-btn"><i class="fas fa-plus"></i> New Project</button>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Project</th>
+                                <th>Keywords</th>
+                                <th>Backlinks</th>
+                                <th>Status</th>
+                                <th>Progress</th>
+                                <th>Last Audit</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="project-name">example.com</div>
+                                    <div class="project-url">https://example.com</div>
+                                </td>
+                                <td>1,234</td>
+                                <td>5,678</td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>
+                                    <div class="progress-container">
+                                        <div class="progress-value" style="width: 75%"></div>
+                                    </div>
+                                </td>
+                                <td>2 hours ago</td>
+                                <td>
+                                    <button class="action-btn"><i class="fas fa-eye"></i></button>
+                                    <button class="action-btn"><i class="fas fa-edit"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="project-name">myblog.com</div>
+                                    <div class="project-url">https://myblog.com</div>
+                                </td>
+                                <td>892</td>
+                                <td>2,145</td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>
+                                    <div class="progress-container">
+                                        <div class="progress-value" style="width: 45%"></div>
+                                    </div>
+                                </td>
+                                <td>5 hours ago</td>
+                                <td>
+                                    <button class="action-btn"><i class="fas fa-eye"></i></button>
+                                    <button class="action-btn"><i class="fas fa-edit"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="project-name">onlineshop.net</div>
+                                    <div class="project-url">https://onlineshop.net</div>
+                                </td>
+                                <td>2,567</td>
+                                <td>8,901</td>
+                                <td><span class="status-badge status-pending">Pending</span></td>
+                                <td>
+                                    <div class="progress-container">
+                                        <div class="progress-value" style="width: 30%"></div>
+                                    </div>
+                                </td>
+                                <td>Yesterday</td>
+                                <td>
+                                    <button class="action-btn"><i class="fas fa-eye"></i></button>
+                                    <button class="action-btn"><i class="fas fa-edit"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="project-name">testsite.org</div>
+                                    <div class="project-url">https://testsite.org</div>
+                                </td>
+                                <td>456</td>
+                                <td>1,234</td>
+                                <td><span class="status-badge status-paused">Paused</span></td>
+                                <td>
+                                    <div class="progress-container">
+                                        <div class="progress-value" style="width: 15%"></div>
+                                    </div>
+                                </td>
+                                <td>3 days ago</td>
+                                <td>
+                                    <button class="action-btn"><i class="fas fa-eye"></i></button>
+                                    <button class="action-btn"><i class="fas fa-edit"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Task toggle function
+        function toggleTask(element) {
+            element.classList.toggle('checked');
+            const taskTitle = element.parentElement.querySelector('.task-title');
+            taskTitle.classList.toggle('completed');
+        }
+
+        // Chart button functionality
+        document.querySelectorAll('.chart-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.chart-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                // Here you would update the chart data
+            });
+        });
+
+        // Smooth animations on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        document.querySelectorAll('.stat-card, .chart-card, .activity-card').forEach(el => {
+            el.style.opacity = 0;
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.5s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
