@@ -4,785 +4,137 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - SEO Tools Pro</title>
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #0f172a;
-            color: #fff;
-        }
-
-        /* Dark Mode Navigation */
-        .navbar {
-            background: #1e293b;
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid #334155;
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #667eea;
-        }
-
-        .logo i {
-            font-size: 2rem;
-            color: #667eea;
-        }
-
-        .user-menu {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .user-menu span {
-            color: #fff;
-        }
-
-        .user-avatar {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-        }
-
-        .logout-btn {
-            padding: 0.5rem 1rem;
-            background: #ef4444;
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            transition: all 0.3s;
-        }
-
-        .logout-btn:hover {
-            background: #dc2626;
-        }
-
-        /* Dashboard Layout */
-        .dashboard {
-            display: flex;
-            margin-top: 70px;
-            min-height: calc(100vh - 70px);
-        }
-
-        /* Sidebar */
+        body { background: #f8fafc; }
+        .dashboard { display: flex; margin-top: 70px; min-height: calc(100vh - 70px); }
         .sidebar {
-            width: 280px;
-            background: #1e293b;
-            padding: 2rem 0;
-            position: fixed;
-            height: calc(100vh - 70px);
-            overflow-y: auto;
-            border-right: 1px solid #334155;
+            width: 260px; background: white; box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+            position: fixed; height: calc(100vh - 70px); overflow-y: auto;
         }
-
-        .user-info {
-            padding: 0 1.5rem 2rem;
-            border-bottom: 1px solid #334155;
-            margin-bottom: 2rem;
+        .user-info { padding: 2rem 1.5rem; border-bottom: 1px solid #eee; }
+        .user-avatar { width: 50px; height: 50px; background: #667eea; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; }
+        .plan-badge { margin-top: 1rem; padding: 0.3rem 1rem; background: #f0f0f0; border-radius: 20px; font-size: 0.85rem; display: inline-block; }
+        .nav-menu { list-style: none; padding: 1.5rem 0; }
+        .nav-item a {
+            display: flex; align-items: center; gap: 1rem; padding: 0.8rem 1.5rem;
+            color: #666; text-decoration: none; transition: all 0.3s;
         }
-
-        .user-details {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .user-details .avatar {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-
-        .user-text h4 {
-            font-size: 1rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .user-text p {
-            font-size: 0.85rem;
-            color: #94a3b8;
-        }
-
-        .plan-badge {
-            margin-top: 1rem;
-            padding: 0.5rem 1rem;
-            background: #2d3748;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            color: #667eea;
-            border-left: 3px solid #667eea;
-        }
-
-        .nav-menu {
-            list-style: none;
-        }
-
-        .nav-item {
-            margin-bottom: 0.5rem;
-        }
-
-        .nav-link {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 0.75rem 1.5rem;
-            color: #94a3b8;
-            text-decoration: none;
-            transition: all 0.3s;
-            border-left: 3px solid transparent;
-        }
-
-        .nav-link:hover,
-        .nav-link.active {
-            background: #2d3748;
-            color: #667eea;
-            border-left-color: #667eea;
-        }
-
-        .nav-link i {
-            width: 20px;
-            font-size: 1.1rem;
-        }
-
-        /* Main Content */
-        .main-content {
-            flex: 1;
-            margin-left: 280px;
-            padding: 2rem;
-        }
-
-        /* Welcome Banner */
+        .nav-item a:hover, .nav-item a.active { background: #f8fafc; color: #667eea; border-left: 3px solid #667eea; }
+        .main-content { flex: 1; margin-left: 260px; padding: 2rem; }
         .welcome-banner {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 20px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            color: white; padding: 2rem; border-radius: 10px; margin-bottom: 2rem;
         }
-
-        .welcome-text h1 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .welcome-text p {
-            opacity: 0.9;
-        }
-
-        .quick-action {
-            background: rgba(255,255,255,0.2);
-            padding: 0.75rem 1.5rem;
-            border-radius: 10px;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .quick-action:hover {
-            background: rgba(255,255,255,0.3);
-        }
-
-        /* Stats Cards */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
+        .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; margin-bottom: 2rem; }
         .stat-card {
-            background: #1e293b;
-            border-radius: 15px;
-            padding: 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border: 1px solid #334155;
-            transition: all 0.3s;
+            background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            display: flex; justify-content: space-between; align-items: center;
         }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            border-color: #667eea;
-        }
-
-        .stat-info h3 {
-            font-size: 0.9rem;
-            color: #94a3b8;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #667eea;
-        }
-
-        .stat-icon {
-            width: 50px;
-            height: 50px;
-            background: #2d3748;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .stat-icon i {
-            font-size: 1.5rem;
-            color: #667eea;
-        }
-
-        /* Charts Section */
-        .charts-row {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
+        .stat-number { font-size: 2rem; font-weight: 700; color: #667eea; }
         .chart-card {
-            background: #1e293b;
-            border-radius: 15px;
-            padding: 1.5rem;
-            border: 1px solid #334155;
-        }
-
-        .chart-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .chart-header h3 {
-            color: #fff;
-        }
-
-        .chart-header select {
-            padding: 0.5rem;
-            background: #2d3748;
-            border: 1px solid #334155;
-            border-radius: 6px;
-            color: #fff;
-        }
-
-        .chart-placeholder {
-            height: 250px;
-            background: #2d3748;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #94a3b8;
-            border: 1px dashed #334155;
-        }
-
-        /* Recent Activity */
-        .activity-card {
-            background: #1e293b;
-            border-radius: 15px;
-            padding: 1.5rem;
-            border: 1px solid #334155;
+            background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);
             margin-bottom: 2rem;
         }
-
-        .activity-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .activity-header h3 {
-            color: #fff;
-        }
-
-        .view-all {
-            color: #667eea;
-            text-decoration: none;
-        }
-
-        .activity-list {
-            list-style: none;
-        }
-
+        .activity-list { list-style: none; }
         .activity-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem 0;
-            border-bottom: 1px solid #334155;
+            display: flex; align-items: center; gap: 1rem; padding: 1rem 0;
+            border-bottom: 1px solid #eee;
         }
-
-        .activity-item:last-child {
-            border-bottom: none;
-        }
-
-        .activity-icon {
-            width: 40px;
-            height: 40px;
-            background: #2d3748;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #667eea;
-        }
-
-        .activity-details {
-            flex: 1;
-        }
-
-        .activity-details p {
-            color: #fff;
-            margin-bottom: 0.25rem;
-        }
-
-        .activity-time {
-            font-size: 0.85rem;
-            color: #94a3b8;
-        }
-
-        /* Projects Table */
         .projects-table {
-            background: #1e293b;
-            border-radius: 15px;
-            padding: 1.5rem;
-            border: 1px solid #334155;
+            background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);
         }
-
-        .table-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .table-header h3 {
-            color: #fff;
-        }
-
-        .add-btn {
-            padding: 0.5rem 1rem;
-            background: #667eea;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .add-btn:hover {
-            background: #764ba2;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th {
-            text-align: left;
-            padding: 1rem;
-            color: #94a3b8;
-            font-weight: 500;
-            border-bottom: 1px solid #334155;
-        }
-
-        td {
-            padding: 1rem;
-            color: #fff;
-            border-bottom: 1px solid #334155;
-        }
-
+        table { width: 100%; border-collapse: collapse; }
+        th { text-align: left; padding: 1rem; background: #f8fafc; }
+        td { padding: 1rem; border-bottom: 1px solid #eee; }
         .status-badge {
-            padding: 0.25rem 0.75rem;
-            border-radius: 15px;
-            font-size: 0.85rem;
+            padding: 0.2rem 0.8rem; border-radius: 15px; font-size: 0.85rem;
         }
-
-        .status-badge.active {
-            background: #065f46;
-            color: #10b981;
-        }
-
-        .status-badge.pending {
-            background: #92400e;
-            color: #f59e0b;
-        }
-
-        .progress-bar {
-            width: 100px;
-            height: 6px;
-            background: #2d3748;
-            border-radius: 3px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: #667eea;
-            border-radius: 3px;
-        }
-
-        .action-btn {
-            padding: 0.4rem 0.8rem;
-            background: #2d3748;
-            border: 1px solid #334155;
-            border-radius: 4px;
-            color: #fff;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .action-btn:hover {
-            background: #667eea;
-        }
-
-        /* Responsive */
-        @media (max-width: 1200px) {
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .charts-row {
-                grid-template-columns: 1fr;
-            }
-        }
-
+        .status-badge.active { background: #d4edda; color: #155724; }
+        .progress-bar { width: 100px; height: 6px; background: #eee; border-radius: 3px; }
+        .progress-fill { height: 100%; background: #667eea; border-radius: 3px; }
         @media (max-width: 768px) {
-            .sidebar {
-                transform: translateX(-100%);
-            }
-            
-            .main-content {
-                margin-left: 0;
-            }
-            
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
+            .sidebar { transform: translateX(-100%); }
+            .main-content { margin-left: 0; }
+            .stats-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">
-                <i class="fas fa-chart-line"></i>
-                <span>SEO Tools Pro</span>
-            </div>
-            <div class="user-menu">
-                <span>Welcome back, John!</span>
-                <div class="user-avatar">JD</div>
-                <a href="login.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            <div class="logo"><i class="fas fa-chart-line"></i><span>SEO Tools Pro</span></div>
+            <div style="display:flex; align-items:center; gap:1rem;">
+                <span>Welcome, John!</span>
+                <a href="login.html" class="btn-outline">Logout</a>
             </div>
         </div>
     </nav>
 
     <div class="dashboard">
-        <!-- Sidebar -->
         <aside class="sidebar">
             <div class="user-info">
-                <div class="user-details">
-                    <div class="avatar">JD</div>
-                    <div class="user-text">
-                        <h4>John Doe</h4>
-                        <p>john.doe@example.com</p>
-                    </div>
+                <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1rem;">
+                    <div class="user-avatar">JD</div>
+                    <div><h4>John Doe</h4><p style="color:#666;">john@example.com</p></div>
                 </div>
-                <div class="plan-badge">
-                    <i class="fas fa-crown"></i> Pro Plan - Active
-                </div>
+                <span class="plan-badge">Pro Plan</span>
             </div>
-
             <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="#" class="nav-link active">
-                        <i class="fas fa-home"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-key"></i>
-                        <span>Keyword Research</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-search"></i>
-                        <span>SEO Analyzer</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-link"></i>
-                        <span>Backlink Checker</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-chart-line"></i>
-                        <span>Rank Tracker</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-file-alt"></i>
-                        <span>Site Audit</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-flag"></i>
-                        <span>Reports</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-users"></i>
-                        <span>Team</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-cog"></i>
-                        <span>Settings</span>
-                    </a>
-                </li>
+                <li class="nav-item"><a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li class="nav-item"><a href="#"><i class="fas fa-key"></i> Keywords</a></li>
+                <li class="nav-item"><a href="#"><i class="fas fa-link"></i> Backlinks</a></li>
+                <li class="nav-item"><a href="#"><i class="fas fa-chart-line"></i> Rankings</a></li>
+                <li class="nav-item"><a href="#"><i class="fas fa-file-alt"></i> Reports</a></li>
+                <li class="nav-item"><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
             </ul>
         </aside>
 
-        <!-- Main Content -->
         <main class="main-content">
-            <!-- Welcome Banner -->
             <div class="welcome-banner">
-                <div class="welcome-text">
-                    <h1>Welcome back, John! 👋</h1>
-                    <p>Your websites are performing well today. Check out the latest updates.</p>
-                </div>
-                <a href="#" class="quick-action">
-                    <i class="fas fa-plus"></i> Add New Project
-                </a>
+                <h1>Welcome back, John! 👋</h1>
+                <p>Your websites are performing well today</p>
             </div>
 
-            <!-- Stats Cards -->
             <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-info">
-                        <h3>Total Keywords</h3>
-                        <div class="stat-number">2,547</div>
-                    </div>
-                    <div class="stat-icon">
-                        <i class="fas fa-key"></i>
-                    </div>
-                </div>
+                <div class="stat-card"><div><h3>Keywords</h3><div class="stat-number">2,547</div></div><i class="fas fa-key" style="font-size:2rem; color:#667eea;"></i></div>
+                <div class="stat-card"><div><h3>Backlinks</h3><div class="stat-number">12.4K</div></div><i class="fas fa-link" style="font-size:2rem; color:#667eea;"></i></div>
+                <div class="stat-card"><div><h3>Domain Rating</h3><div class="stat-number">67</div></div><i class="fas fa-chart-line" style="font-size:2rem; color:#667eea;"></i></div>
+                <div class="stat-card"><div><h3>Pages</h3><div class="stat-number">8,943</div></div><i class="fas fa-file" style="font-size:2rem; color:#667eea;"></i></div>
+            </div>
 
-                <div class="stat-card">
-                    <div class="stat-info">
-                        <h3>Backlinks</h3>
-                        <div class="stat-number">12.4K</div>
-                    </div>
-                    <div class="stat-icon">
-                        <i class="fas fa-link"></i>
-                    </div>
-                </div>
-
-                <div class="stat-card">
-                    <div class="stat-info">
-                        <h3>Domain Rating</h3>
-                        <div class="stat-number">67</div>
-                    </div>
-                    <div class="stat-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                </div>
-
-                <div class="stat-card">
-                    <div class="stat-info">
-                        <h3>Pages Audited</h3>
-                        <div class="stat-number">8,943</div>
-                    </div>
-                    <div class="stat-icon">
-                        <i class="fas fa-file-alt"></i>
-                    </div>
+            <div class="chart-card">
+                <h3 style="margin-bottom:1rem;">Rankings Overview</h3>
+                <div style="height:200px; background:#f8fafc; border-radius:8px; display:flex; align-items:center; justify-content:center; color:#666;">
+                    [Chart Area - Rankings Graph]
                 </div>
             </div>
 
-            <!-- Charts -->
-            <div class="charts-row">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-bottom:2rem;">
                 <div class="chart-card">
-                    <div class="chart-header">
-                        <h3>Rankings Overview</h3>
-                        <select>
-                            <option>Last 7 days</option>
-                            <option>Last 30 days</option>
-                            <option>Last 3 months</option>
-                        </select>
-                    </div>
-                    <div class="chart-placeholder">
-                        <i class="fas fa-chart-line" style="font-size: 3rem; margin-bottom: 1rem;"></i>
-                        <p>Chart will be displayed here</p>
-                    </div>
+                    <h3 style="margin-bottom:1rem;">Recent Activity</h3>
+                    <ul class="activity-list">
+                        <li class="activity-item"><i class="fas fa-search" style="color:#667eea;"></i> <div><p>SEO Audit completed</p><small>2 hours ago</small></div></li>
+                        <li class="activity-item"><i class="fas fa-key" style="color:#667eea;"></i> <div><p>50 keywords added</p><small>5 hours ago</small></div></li>
+                        <li class="activity-item"><i class="fas fa-link" style="color:#667eea;"></i> <div><p>15 new backlinks</p><small>Yesterday</small></div></li>
+                    </ul>
                 </div>
-
                 <div class="chart-card">
-                    <div class="chart-header">
-                        <h3>Traffic Sources</h3>
-                    </div>
-                    <div class="chart-placeholder">
-                        <i class="fas fa-chart-pie" style="font-size: 3rem; margin-bottom: 1rem;"></i>
-                        <p>Chart will be displayed here</p>
+                    <h3 style="margin-bottom:1rem;">Quick Actions</h3>
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                        <a href="#" style="text-align:center; padding:1rem; background:#f8fafc; border-radius:8px; text-decoration:none; color:#333;"><i class="fas fa-plus"></i> New Project</a>
+                        <a href="#" style="text-align:center; padding:1rem; background:#f8fafc; border-radius:8px; text-decoration:none; color:#333;"><i class="fas fa-search"></i> Run Audit</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Recent Activity -->
-            <div class="activity-card">
-                <div class="activity-header">
-                    <h3>Recent Activity</h3>
-                    <a href="#" class="view-all">View All</a>
-                </div>
-                
-                <ul class="activity-list">
-                    <li class="activity-item">
-                        <div class="activity-icon">
-                            <i class="fas fa-search"></i>
-                        </div>
-                        <div class="activity-details">
-                            <p>SEO Audit completed for example.com</p>
-                            <span class="activity-time">2 hours ago</span>
-                        </div>
-                    </li>
-                    
-                    <li class="activity-item">
-                        <div class="activity-icon">
-                            <i class="fas fa-key"></i>
-                        </div>
-                        <div class="activity-details">
-                            <p>50 new keywords added to tracking</p>
-                            <span class="activity-time">5 hours ago</span>
-                        </div>
-                    </li>
-                    
-                    <li class="activity-item">
-                        <div class="activity-icon">
-                            <i class="fas fa-link"></i>
-                        </div>
-                        <div class="activity-details">
-                            <p>15 new backlinks discovered</p>
-                            <span class="activity-time">Yesterday</span>
-                        </div>
-                    </li>
-                    
-                    <li class="activity-item">
-                        <div class="activity-icon">
-                            <i class="fas fa-file-pdf"></i>
-                        </div>
-                        <div class="activity-details">
-                            <p>Monthly report generated</p>
-                            <span class="activity-time">Yesterday</span>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Projects Table -->
             <div class="projects-table">
-                <div class="table-header">
-                    <h3>Your Projects</h3>
-                    <button class="add-btn"><i class="fas fa-plus"></i> New Project</button>
-                </div>
-                
+                <h3 style="margin-bottom:1.5rem;">Your Projects</h3>
                 <table>
-                    <thead>
-                        <tr>
-                            <th>Project Name</th>
-                            <th>Keywords</th>
-                            <th>Backlinks</th>
-                            <th>Status</th>
-                            <th>Progress</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>example.com</td>
-                            <td>1,234</td>
-                            <td>5,678</td>
-                            <td><span class="status-badge active">Active</span></td>
-                            <td>
-                                <div class="progress-bar">
-                                    <div class="progress-fill" style="width: 75%"></div>
-                                </div>
-                            </td>
-                            <td><button class="action-btn">View</button></td>
-                        </tr>
-                        <tr>
-                            <td>myblog.com</td>
-                            <td>892</td>
-                            <td>2,145</td>
-                            <td><span class="status-badge active">Active</span></td>
-                            <td>
-                                <div class="progress-bar">
-                                    <div class="progress-fill" style="width: 45%"></div>
-                                </div>
-                            </td>
-                            <td><button class="action-btn">View</button></td>
-                        </tr>
-                        <tr>
-                            <td>onlineshop.net</td>
-                            <td>2,567</td>
-                            <td>8,901</td>
-                            <td><span class="status-badge pending">Pending</span></td>
-                            <td>
-                                <div class="progress-bar">
-                                    <div class="progress-fill" style="width: 30%"></div>
-                                </div>
-                            </td>
-                            <td><button class="action-btn">View</button></td>
-                        </tr>
-                    </tbody>
+                    <tr><th>Project</th><th>Keywords</th><th>Backlinks</th><th>Status</th><th>Progress</th></tr>
+                    <tr><td>example.com</td><td>1,234</td><td>5,678</td><td><span class="status-badge active">Active</span></td><td><div class="progress-bar"><div class="progress-fill" style="width:75%"></div></div></td></tr>
+                    <tr><td>myblog.com</td><td>892</td><td>2,145</td><td><span class="status-badge active">Active</span></td><td><div class="progress-bar"><div class="progress-fill" style="width:45%"></div></div></td></tr>
                 </table>
             </div>
         </main>
