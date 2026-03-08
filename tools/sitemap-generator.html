@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XML Sitemap Generator - SEO Tools Pro</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .tool-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 0 60px;
+            text-align: center;
+        }
+        .tool-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        .generator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        .form-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #eee;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        .form-group input:focus {
+            border-color: #667eea;
+            outline: none;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .checkbox-group input {
+            width: auto;
+        }
+        .output-card {
+            background: #f8fafc;
+            padding: 2rem;
+            border-radius: 10px;
+            border: 2px dashed #667eea;
+        }
+        .output-card h3 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        .sitemap-output {
+            background: #2d3748;
+            color: #fff;
+            padding: 1.5rem;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            margin-bottom: 1rem;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        .url-list {
+            margin-top: 2rem;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        .url-item {
+            display: flex;
+            align-items: center;
+            padding: 0.8rem;
+            border-bottom: 1px solid #eee;
+        }
+        .url-item:last-child {
+            border-bottom: none;
+        }
+        .url-item input {
+            flex: 1;
+            margin-right: 1rem;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .remove-btn {
+            color: #dc3545;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+        .add-url-btn {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            background: #f8fafc;
+            border: 2px dashed #667eea;
+            border-radius: 5px;
+            color: #667eea;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+        }
+        .frequency-select {
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-right: 0.5rem;
+        }
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #2196f3;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-radius: 5px;
+        }
+        .priority-slider {
+            width: 100%;
+            margin: 0.5rem 0;
+        }
+        .tab-buttons {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .tab-btn {
+            padding: 0.8rem 1.5rem;
+            background: #f8fafc;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .tab-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        @media (max-width: 768px) {
+            .generator-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                <span>SEO Tools Pro</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../tools.html" class="active">Tools</a></li>
+                <li><a href="../pricing.html">Pricing</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <a href="../login.html" class="btn-outline">Login</a>
+                <a href="../signup.html" class="btn-primary">Sign Up</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="tool-header">
+        <h1>XML Sitemap Generator</h1>
+        <p>Create XML sitemaps for better search engine indexing</p>
+    </section>
+
+    <div class="tool-container">
+        <div class="info-box">
+            <strong>📌 What is a sitemap?</strong>
+            <p style="margin-top: 0.5rem;">A sitemap helps search engines discover and index your website's pages. Submit it to Google Search Console for better crawling.</p>
+        </div>
+
+        <div class="tab-buttons">
+            <button class="tab-btn active" onclick="showTab('basic')">Basic</button>
+            <button class="tab-btn" onclick="showTab('advanced')">Advanced</button>
+            <button class="tab-btn" onclick="showTab('visual')">Visual Sitemap</button>
+        </div>
+
+        <div class="generator-grid">
+            <!-- Input Form -->
+            <div class="form-card" id="basicTab">
+                <h3 style="margin-bottom: 1.5rem;">Enter Your Website Details</h3>
+                
+                <div class="form-group">
+                    <label>Website URL</label>
+                    <input type="url" id="websiteUrl" placeholder="https://www.example.com" value="https://www.example.com">
+                </div>
+
+                <div class="form-group">
+                    <label>Sitemap Name (Optional)</label>
+                    <input type="text" id="sitemapName" placeholder="sitemap.xml">
+                </div>
+
+                <div class="form-group">
+                    <label>Change Frequency</label>
+                    <select id="changeFreq" class="frequency-select" style="width: 100%;">
+                        <option value="always">Always</option>
+                        <option value="hourly">Hourly</option>
+                        <option value="daily" selected>Daily</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="yearly">Yearly</option>
+                        <option value="never">Never</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Priority (0.0 to 1.0)</label>
+                    <input type="range" id="priority" class="priority-slider" min="0" max="1" step="0.1" value="0.5">
+                    <div style="display: flex; justify-content: space-between; margin-top: 0.3rem;">
+                        <span>0.0</span>
+                        <span id="priorityValue">0.5</span>
+                        <span>1.0</span>
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="includeImages" checked>
+                    <label>Include image sitemap</label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="includeVideos">
+                    <label>Include video sitemap</label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="includeNews">
+                    <label>Include news sitemap</label>
+                </div>
+            </div>
+
+            <!-- Advanced Tab (Hidden by default) -->
+            <div class="form-card" id="advancedTab" style="display: none;">
+                <h3 style="margin-bottom: 1.5rem;">Advanced Settings</h3>
+                
+                <div class="form-group">
+                    <label>Exclude URLs (one per line)</label>
+                    <textarea id="excludeUrls" rows="4" style="width: 100%; padding: 0.8rem; border: 2px solid #eee; border-radius: 5px;">/admin/
+/login/
+/cart/
+/checkout/</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Maximum URLs per sitemap</label>
+                    <input type="number" id="maxUrls" value="50000" min="1" max="50000">
+                </div>
+
+                <div class="form-group">
+                    <label>Last Modified (YYYY-MM-DD)</label>
+                    <input type="date" id="lastmod" value="2024-03-20">
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="gzip" checked>
+                    <label>Compress sitemap (sitemap.xml.gz)</label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="htmlSitemap">
+                    <label>Also generate HTML sitemap</label>
+                </div>
+            </div>
+
+            <!-- Visual Sitemap Tab -->
+            <div class="form-card" id="visualTab" style="display: none;">
+                <h3 style="margin-bottom: 1.5rem;">Add Your URLs</h3>
+                
+                <div id="urlList" class="url-list" style="margin-top: 0;">
+                    <div class="url-item">
+                        <input type="text" value="https://www.example.com/" placeholder="Enter URL">
+                        <select class="frequency-select">
+                            <option>daily</option>
+                            <option>weekly</option>
+                            <option>monthly</option>
+                        </select>
+                        <i class="fas fa-trash remove-btn" onclick="removeUrl(this)"></i>
+                    </div>
+                    <div class="url-item">
+                        <input type="text" value="https://www.example.com/about" placeholder="Enter URL">
+                        <select class="frequency-select">
+                            <option>daily</option>
+                            <option selected>weekly</option>
+                            <option>monthly</option>
+                        </select>
+                        <i class="fas fa-trash remove-btn" onclick="removeUrl(this)"></i>
+                    </div>
+                    <div class="url-item">
+                        <input type="text" value="https://www.example.com/contact" placeholder="Enter URL">
+                        <select class="frequency-select">
+                            <option>daily</option>
+                            <option>weekly</option>
+                            <option selected>monthly</option>
+                        </select>
+                        <i class="fas fa-trash remove-btn" onclick="removeUrl(this)"></i>
+                    </div>
+                </div>
+                
+                <button class="add-url-btn" onclick="addUrl()">
+                    <i class="fas fa-plus"></i> Add Another URL
+                </button>
+            </div>
+
+            <!-- Output Section -->
+            <div class="output-card">
+                <h3>Generated Sitemap</h3>
+                <div class="sitemap-output" id="sitemapOutput">
+                    &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"&gt;
+    &lt;url&gt;
+        &lt;loc&gt;https://www.example.com/&lt;/loc&gt;
+        &lt;lastmod&gt;2024-03-20&lt;/lastmod&gt;
+        &lt;changefreq&gt;daily&lt;/changefreq&gt;
+        &lt;priority&gt;1.0&lt;/priority&gt;
+    &lt;/url&gt;
+    &lt;url&gt;
+        &lt;loc&gt;https://www.example.com/about&lt;/loc&gt;
+        &lt;lastmod&gt;2024-03-19&lt;/lastmod&gt;
+        &lt;changefreq&gt;weekly&lt;/changefreq&gt;
+        &lt;priority&gt;0.8&lt;/priority&gt;
+    &lt;/url&gt;
+    &lt;url&gt;
+        &lt;loc&gt;https://www.example.com/contact&lt;/loc&gt;
+        &lt;lastmod&gt;2024-03-18&lt;/lastmod&gt;
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+        &lt;priority&gt;0.5&lt;/priority&gt;
+    &lt;/url&gt;
+&lt;/urlset&gt;
+                </div>
+                <div class="action-buttons">
+                    <button class="btn-primary" style="flex: 1;" onclick="generateSitemap()">
+                        <i class="fas fa-sync-alt"></i> Generate
+                    </button>
+                    <button class="btn-primary" style="flex: 1;" onclick="copySitemap()">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                    <button class="btn-secondary" style="flex: 1;" onclick="downloadSitemap()">
+                        <i class="fas fa-download"></i> Download
+                    </button>
+                </div>
+                <p style="text-align: center; margin-top: 1rem; color: #666;">
+                    <i class="fas fa-info-circle"></i> 
+                    Submit this sitemap to Google Search Console
+                </p>
+            </div>
+        </div>
+
+        <!-- Instructions -->
+        <div style="margin-top: 3rem; background: white; padding: 2rem; border-radius: 10px;">
+            <h3 style="margin-bottom: 1rem;">How to submit your sitemap to Google:</h3>
+            <ol style="margin-left: 1.5rem; color: #666;">
+                <li>Generate and download your sitemap.xml file</li>
+                <li>Upload it to your website's root directory (public_html/)</li>
+                <li>Go to <a href="#" style="color: #667eea;">Google Search Console</a></li>
+                <li>Select your property and click on "Sitemaps"</li>
+                <li>Enter your sitemap URL (e.g., https://yourdomain.com/sitemap.xml)</li>
+                <li>Click "Submit"</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // Priority slider
+        const prioritySlider = document.getElementById('priority');
+        const priorityValue = document.getElementById('priorityValue');
+        
+        if(prioritySlider) {
+            prioritySlider.addEventListener('input', function() {
+                priorityValue.textContent = this.value;
+            });
+        }
+
+        // Tab switching
+        function showTab(tabName) {
+            const tabs = document.querySelectorAll('.tab-btn');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            if(tabName === 'basic') {
+                document.getElementById('basicTab').style.display = 'block';
+                document.getElementById('advancedTab').style.display = 'none';
+                document.getElementById('visualTab').style.display = 'none';
+                tabs[0].classList.add('active');
+            } else if(tabName === 'advanced') {
+                document.getElementById('basicTab').style.display = 'none';
+                document.getElementById('advancedTab').style.display = 'block';
+                document.getElementById('visualTab').style.display = 'none';
+                tabs[1].classList.add('active');
+            } else {
+                document.getElementById('basicTab').style.display = 'none';
+                document.getElementById('advancedTab').style.display = 'none';
+                document.getElementById('visualTab').style.display = 'block';
+                tabs[2].classList.add('active');
+            }
+        }
+
+        // Generate sitemap
+        function generateSitemap() {
+            const url = document.getElementById('websiteUrl')?.value || 'https://www.example.com';
+            const freq = document.getElementById('changeFreq')?.value || 'daily';
+            const priority = document.getElementById('priority')?.value || '0.5';
+            
+            let sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n';
+            sitemap += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"';
+            
+            if(document.getElementById('includeImages')?.checked) {
+                sitemap += '\n        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"';
+            }
+            if(document.getElementById('includeVideos')?.checked) {
+                sitemap += '\n        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"';
+            }
+            if(document.getElementById('includeNews')?.checked) {
+                sitemap += '\n        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"';
+            }
+            
+            sitemap += '>\n';
+            
+            // Get URLs from visual tab if visible
+            if(document.getElementById('visualTab').style.display === 'block') {
+                const urlItems = document.querySelectorAll('#urlList .url-item input');
+                urlItems.forEach((item, index) => {
+                    const urlValue = item.value;
+                    const freqSelect = item.parentElement.querySelector('select')?.value || 'daily';
+                    sitemap += '    <url>\n';
+                    sitemap += `        <loc>${urlValue}</loc>\n`;
+                    sitemap += `        <lastmod>2024-03-20</lastmod>\n`;
+                    sitemap += `        <changefreq>${freqSelect}</changefreq>\n`;
+                    sitemap += `        <priority>${1 - (index * 0.1)}</priority>\n`;
+                    sitemap += '    </url>\n';
+                });
+            } else {
+                // Default URLs
+                const pages = ['', 'about', 'contact', 'services', 'blog', 'products'];
+                pages.forEach((page, index) => {
+                    const pageUrl = page ? `${url}/${page}` : url;
+                    sitemap += '    <url>\n';
+                    sitemap += `        <loc>${pageUrl}</loc>\n`;
+                    sitemap += `        <lastmod>2024-03-20</lastmod>\n`;
+                    sitemap += `        <changefreq>${freq}</changefreq>\n`;
+                    sitemap += `        <priority>${1 - (index * 0.1)}</priority>\n`;
+                    sitemap += '    </url>\n';
+                });
+            }
+            
+            sitemap += '</urlset>';
+            
+            document.getElementById('sitemapOutput').textContent = sitemap;
+        }
+
+        // Copy sitemap
+        function copySitemap() {
+            const sitemap = document.getElementById('sitemapOutput').textContent;
+            navigator.clipboard.writeText(sitemap).then(() => {
+                alert('Sitemap copied to clipboard!');
+            });
+        }
+
+        // Download sitemap
+        function downloadSitemap() {
+            const sitemap = document.getElementById('sitemapOutput').textContent;
+            const blob = new Blob([sitemap], { type: 'application/xml' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = document.getElementById('sitemapName')?.value || 'sitemap.xml';
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+
+        // Add URL to visual sitemap
+        function addUrl() {
+            const urlList = document.getElementById('urlList');
+            const newItem = document.createElement('div');
+            newItem.className = 'url-item';
+            newItem.innerHTML = `
+                <input type="text" value="https://www.example.com/new-page" placeholder="Enter URL">
+                <select class="frequency-select">
+                    <option>daily</option>
+                    <option>weekly</option>
+                    <option>monthly</option>
+                </select>
+                <i class="fas fa-trash remove-btn" onclick="removeUrl(this)"></i>
+            `;
+            urlList.appendChild(newItem);
+        }
+
+        // Remove URL
+        function removeUrl(element) {
+            element.parentElement.remove();
+        }
+
+        // Generate on page load
+        window.onload = function() {
+            // Initialize with sample data
+        };
+    </script>
+</body>
+</html>
