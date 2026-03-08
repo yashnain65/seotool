@@ -4,38 +4,119 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - SEO Tools Pro</title>
-    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        .dashboard-container {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0f172a;
+            color: #fff;
+        }
+
+        /* Dark Mode Navigation */
+        .navbar {
+            background: #1e293b;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #334155;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
             display: flex;
-            min-height: 100vh;
-            padding-top: 70px;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: #667eea;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .user-menu span {
+            color: #fff;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .logout-btn {
+            padding: 0.5rem 1rem;
+            background: #ef4444;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: #dc2626;
+        }
+
+        /* Dashboard Layout */
+        .dashboard {
+            display: flex;
+            margin-top: 70px;
+            min-height: calc(100vh - 70px);
         }
 
         /* Sidebar */
         .sidebar {
             width: 280px;
-            background: white;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+            background: #1e293b;
+            padding: 2rem 0;
             position: fixed;
             height: calc(100vh - 70px);
             overflow-y: auto;
-            transition: all 0.3s;
-        }
-
-        .sidebar-header {
-            padding: 2rem 1.5rem;
-            border-bottom: 1px solid #e2e8f0;
+            border-right: 1px solid #334155;
         }
 
         .user-info {
+            padding: 0 1.5rem 2rem;
+            border-bottom: 1px solid #334155;
+            margin-bottom: 2rem;
+        }
+
+        .user-details {
             display: flex;
             align-items: center;
             gap: 1rem;
         }
 
-        .user-avatar {
+        .user-details .avatar {
             width: 50px;
             height: 50px;
             background: linear-gradient(135deg, #667eea, #764ba2);
@@ -43,63 +124,59 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 600;
         }
 
-        .user-details h4 {
-            font-size: 1.1rem;
+        .user-text h4 {
+            font-size: 1rem;
             margin-bottom: 0.25rem;
         }
 
-        .user-details p {
-            color: #666;
-            font-size: 0.9rem;
+        .user-text p {
+            font-size: 0.85rem;
+            color: #94a3b8;
         }
 
         .plan-badge {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            background: #f3f4f6;
-            border-radius: 15px;
-            font-size: 0.8rem;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background: #2d3748;
+            border-radius: 6px;
+            font-size: 0.85rem;
             color: #667eea;
-            font-weight: 600;
+            border-left: 3px solid #667eea;
         }
 
-        .sidebar-nav {
-            padding: 2rem 0;
-        }
-
-        .sidebar-nav ul {
+        .nav-menu {
             list-style: none;
         }
 
-        .sidebar-nav li {
+        .nav-item {
             margin-bottom: 0.5rem;
         }
 
-        .sidebar-nav a {
+        .nav-link {
             display: flex;
             align-items: center;
             gap: 1rem;
             padding: 0.75rem 1.5rem;
-            color: #666;
+            color: #94a3b8;
             text-decoration: none;
             transition: all 0.3s;
             border-left: 3px solid transparent;
         }
 
-        .sidebar-nav a:hover,
-        .sidebar-nav a.active {
-            background: #f8fafc;
+        .nav-link:hover,
+        .nav-link.active {
+            background: #2d3748;
             color: #667eea;
             border-left-color: #667eea;
         }
 
-        .sidebar-nav a i {
+        .nav-link i {
             width: 20px;
+            font-size: 1.1rem;
         }
 
         /* Main Content */
@@ -107,7 +184,39 @@
             flex: 1;
             margin-left: 280px;
             padding: 2rem;
-            background: #f8fafc;
+        }
+
+        /* Welcome Banner */
+        .welcome-banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .welcome-text h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .welcome-text p {
+            opacity: 0.9;
+        }
+
+        .quick-action {
+            background: rgba(255,255,255,0.2);
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .quick-action:hover {
+            background: rgba(255,255,255,0.3);
         }
 
         /* Stats Cards */
@@ -119,31 +228,37 @@
         }
 
         .stat-card {
-            background: white;
-            padding: 1.5rem;
+            background: #1e293b;
             border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 1.5rem;
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
+            border: 1px solid #334155;
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: #667eea;
         }
 
         .stat-info h3 {
             font-size: 0.9rem;
-            color: #666;
+            color: #94a3b8;
             margin-bottom: 0.5rem;
         }
 
         .stat-number {
             font-size: 2rem;
             font-weight: 700;
-            color: #333;
+            color: #667eea;
         }
 
         .stat-icon {
             width: 50px;
             height: 50px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: #2d3748;
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -152,7 +267,7 @@
 
         .stat-icon i {
             font-size: 1.5rem;
-            color: white;
+            color: #667eea;
         }
 
         /* Charts Section */
@@ -164,10 +279,10 @@
         }
 
         .chart-card {
-            background: white;
-            padding: 1.5rem;
+            background: #1e293b;
             border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 1.5rem;
+            border: 1px solid #334155;
         }
 
         .chart-header {
@@ -178,34 +293,35 @@
         }
 
         .chart-header h3 {
-            font-size: 1.1rem;
-            color: #333;
+            color: #fff;
         }
 
         .chart-header select {
             padding: 0.5rem;
-            border: 1px solid #e2e8f0;
+            background: #2d3748;
+            border: 1px solid #334155;
             border-radius: 6px;
-            color: #666;
+            color: #fff;
         }
 
         .chart-placeholder {
-            height: 300px;
-            background: #f8fafc;
+            height: 250px;
+            background: #2d3748;
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #666;
-            border: 2px dashed #e2e8f0;
+            color: #94a3b8;
+            border: 1px dashed #334155;
         }
 
         /* Recent Activity */
         .activity-card {
-            background: white;
-            padding: 1.5rem;
+            background: #1e293b;
             border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 1.5rem;
+            border: 1px solid #334155;
+            margin-bottom: 2rem;
         }
 
         .activity-header {
@@ -216,8 +332,12 @@
         }
 
         .activity-header h3 {
-            font-size: 1.1rem;
-            color: #333;
+            color: #fff;
+        }
+
+        .view-all {
+            color: #667eea;
+            text-decoration: none;
         }
 
         .activity-list {
@@ -229,7 +349,7 @@
             align-items: center;
             gap: 1rem;
             padding: 1rem 0;
-            border-bottom: 1px solid #e2e8f0;
+            border-bottom: 1px solid #334155;
         }
 
         .activity-item:last-child {
@@ -239,7 +359,7 @@
         .activity-icon {
             width: 40px;
             height: 40px;
-            background: #f3f4f6;
+            background: #2d3748;
             border-radius: 10px;
             display: flex;
             align-items: center;
@@ -252,64 +372,420 @@
         }
 
         .activity-details p {
+            color: #fff;
             margin-bottom: 0.25rem;
-            color: #333;
         }
 
         .activity-time {
             font-size: 0.85rem;
-            color: #999;
-        }
-
-        /* Quick Actions */
-        .quick-actions {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .action-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 12px;
-            text-align: center;
-            text-decoration: none;
-            color: #333;
-            transition: all 0.3s;
-        }
-
-        .action-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(99,102,241,0.1);
-        }
-
-        .action-card i {
-            font-size: 2rem;
-            color: #667eea;
-            margin-bottom: 1rem;
-        }
-
-        .action-card h4 {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .action-card p {
-            font-size: 0.85rem;
-            color: #666;
+            color: #94a3b8;
         }
 
         /* Projects Table */
         .projects-table {
-            background: white;
+            background: #1e293b;
             border-radius: 15px;
             padding: 1.5rem;
-            margin-top: 2rem;
+            border: 1px solid #334155;
         }
 
         .table-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-           
+            margin-bottom: 1.5rem;
+        }
+
+        .table-header h3 {
+            color: #fff;
+        }
+
+        .add-btn {
+            padding: 0.5rem 1rem;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .add-btn:hover {
+            background: #764ba2;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            text-align: left;
+            padding: 1rem;
+            color: #94a3b8;
+            font-weight: 500;
+            border-bottom: 1px solid #334155;
+        }
+
+        td {
+            padding: 1rem;
+            color: #fff;
+            border-bottom: 1px solid #334155;
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+        }
+
+        .status-badge.active {
+            background: #065f46;
+            color: #10b981;
+        }
+
+        .status-badge.pending {
+            background: #92400e;
+            color: #f59e0b;
+        }
+
+        .progress-bar {
+            width: 100px;
+            height: 6px;
+            background: #2d3748;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #667eea;
+            border-radius: 3px;
+        }
+
+        .action-btn {
+            padding: 0.4rem 0.8rem;
+            background: #2d3748;
+            border: 1px solid #334155;
+            border-radius: 4px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .action-btn:hover {
+            background: #667eea;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .charts-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                <span>SEO Tools Pro</span>
+            </div>
+            <div class="user-menu">
+                <span>Welcome back, John!</span>
+                <div class="user-avatar">JD</div>
+                <a href="login.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="user-info">
+                <div class="user-details">
+                    <div class="avatar">JD</div>
+                    <div class="user-text">
+                        <h4>John Doe</h4>
+                        <p>john.doe@example.com</p>
+                    </div>
+                </div>
+                <div class="plan-badge">
+                    <i class="fas fa-crown"></i> Pro Plan - Active
+                </div>
+            </div>
+
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-key"></i>
+                        <span>Keyword Research</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-search"></i>
+                        <span>SEO Analyzer</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-link"></i>
+                        <span>Backlink Checker</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Rank Tracker</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Site Audit</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-flag"></i>
+                        <span>Reports</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-users"></i>
+                        <span>Team</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Welcome Banner -->
+            <div class="welcome-banner">
+                <div class="welcome-text">
+                    <h1>Welcome back, John! 👋</h1>
+                    <p>Your websites are performing well today. Check out the latest updates.</p>
+                </div>
+                <a href="#" class="quick-action">
+                    <i class="fas fa-plus"></i> Add New Project
+                </a>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Total Keywords</h3>
+                        <div class="stat-number">2,547</div>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Backlinks</h3>
+                        <div class="stat-number">12.4K</div>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fas fa-link"></i>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Domain Rating</h3>
+                        <div class="stat-number">67</div>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Pages Audited</h3>
+                        <div class="stat-number">8,943</div>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="charts-row">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Rankings Overview</h3>
+                        <select>
+                            <option>Last 7 days</option>
+                            <option>Last 30 days</option>
+                            <option>Last 3 months</option>
+                        </select>
+                    </div>
+                    <div class="chart-placeholder">
+                        <i class="fas fa-chart-line" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                        <p>Chart will be displayed here</p>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Traffic Sources</h3>
+                    </div>
+                    <div class="chart-placeholder">
+                        <i class="fas fa-chart-pie" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                        <p>Chart will be displayed here</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="activity-card">
+                <div class="activity-header">
+                    <h3>Recent Activity</h3>
+                    <a href="#" class="view-all">View All</a>
+                </div>
+                
+                <ul class="activity-list">
+                    <li class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="activity-details">
+                            <p>SEO Audit completed for example.com</p>
+                            <span class="activity-time">2 hours ago</span>
+                        </div>
+                    </li>
+                    
+                    <li class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-key"></i>
+                        </div>
+                        <div class="activity-details">
+                            <p>50 new keywords added to tracking</p>
+                            <span class="activity-time">5 hours ago</span>
+                        </div>
+                    </li>
+                    
+                    <li class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-link"></i>
+                        </div>
+                        <div class="activity-details">
+                            <p>15 new backlinks discovered</p>
+                            <span class="activity-time">Yesterday</span>
+                        </div>
+                    </li>
+                    
+                    <li class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <div class="activity-details">
+                            <p>Monthly report generated</p>
+                            <span class="activity-time">Yesterday</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Projects Table -->
+            <div class="projects-table">
+                <div class="table-header">
+                    <h3>Your Projects</h3>
+                    <button class="add-btn"><i class="fas fa-plus"></i> New Project</button>
+                </div>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Project Name</th>
+                            <th>Keywords</th>
+                            <th>Backlinks</th>
+                            <th>Status</th>
+                            <th>Progress</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>example.com</td>
+                            <td>1,234</td>
+                            <td>5,678</td>
+                            <td><span class="status-badge active">Active</span></td>
+                            <td>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 75%"></div>
+                                </div>
+                            </td>
+                            <td><button class="action-btn">View</button></td>
+                        </tr>
+                        <tr>
+                            <td>myblog.com</td>
+                            <td>892</td>
+                            <td>2,145</td>
+                            <td><span class="status-badge active">Active</span></td>
+                            <td>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 45%"></div>
+                                </div>
+                            </td>
+                            <td><button class="action-btn">View</button></td>
+                        </tr>
+                        <tr>
+                            <td>onlineshop.net</td>
+                            <td>2,567</td>
+                            <td>8,901</td>
+                            <td><span class="status-badge pending">Pending</span></td>
+                            <td>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 30%"></div>
+                                </div>
+                            </td>
+                            <td><button class="action-btn">View</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
