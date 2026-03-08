@@ -4,37 +4,293 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - SEO Tools Pro</title>
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- INTERNAL CSS - Sab yahin hai -->
     <style>
-        /* Tumhara existing CSS yahan rahega */
-        .auth-container { /* ... */ }
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .logo i {
+            font-size: 2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .nav-menu a:hover {
+            color: #667eea;
+        }
+
+        .btn-outline {
+            padding: 0.5rem 1.5rem;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            padding: 0.5rem 1.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 8px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Login Container */
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 20px 50px;
+        }
+
+        .auth-box {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            max-width: 450px;
+            width: 100%;
+            padding: 2.5rem;
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .auth-header h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .auth-header p {
+            color: #666;
+        }
+
+        .auth-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .auth-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .input-group {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 1rem;
+            color: #999;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 1rem;
+            left: auto !important;
+            cursor: pointer;
+        }
+
+        .auth-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+        }
+
+        .forgot-password {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .auth-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .auth-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: #666;
+        }
+
+        .auth-footer a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .alert.error {
+            background: #fee2e2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+        }
+
+        .alert.success {
+            background: #dcfce7;
+            color: #16a34a;
+            border: 1px solid #bbf7d0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .auth-box {
+                padding: 2rem;
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar"><!-- ... --></nav>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                <span>SEO Tools Pro</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tools/">Tools</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <a href="login.html" class="btn-outline">Login</a>
+                <a href="signup.html" class="btn-primary">Sign Up</a>
+            </div>
+        </div>
+    </nav>
 
     <!-- Login Form -->
     <div class="auth-container">
         <div class="auth-box">
             <div class="auth-header">
-                <h2>Welcome Back!</h2>
+                <h2>Welcome Back! 👋</h2>
                 <p>Login to access your SEO tools</p>
             </div>
 
-            <!-- Error/Success Alerts -->
-            <div class="alert error" id="errorAlert" style="display: none;">
+            <div class="alert error" id="errorAlert">
                 <i class="fas fa-exclamation-circle"></i>
                 <span></span>
             </div>
 
-            <div class="alert success" id="successAlert" style="display: none;">
+            <div class="alert success" id="successAlert">
                 <i class="fas fa-check-circle"></i>
                 <span></span>
             </div>
 
-            <!-- Login Form -->
             <form class="auth-form" id="loginForm" onsubmit="handleLogin(event)">
                 <div class="form-group">
                     <label for="email">Email Address</label>
@@ -69,9 +325,7 @@
         </div>
     </div>
 
-    <!-- Simple JavaScript -->
     <script>
-        // Password toggle function
         function togglePassword() {
             const passwordInput = document.getElementById('password');
             const toggleIcon = document.querySelector('.toggle-password');
@@ -87,26 +341,18 @@
             }
         }
 
-        // Login handler
         function handleLogin(event) {
-            event.preventDefault();  // Form reload hone se rokta hai
+            event.preventDefault();
             
-            console.log('Login function called');
-            
-            // Get values
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-            
-            // Get alert elements
             const errorAlert = document.getElementById('errorAlert');
             const successAlert = document.getElementById('successAlert');
             const loginBtn = document.getElementById('loginBtn');
             
-            // Hide previous alerts
             errorAlert.style.display = 'none';
             successAlert.style.display = 'none';
             
-            // Validation
             if (!email || !password) {
                 errorAlert.querySelector('span').textContent = 'Please fill in all fields';
                 errorAlert.style.display = 'flex';
@@ -114,44 +360,32 @@
             }
             
             if (!email.includes('@') || !email.includes('.')) {
-                errorAlert.querySelector('span').textContent = 'Please enter a valid email address';
+                errorAlert.querySelector('span').textContent = 'Please enter a valid email';
                 errorAlert.style.display = 'flex';
                 return;
             }
             
-            if (password.length < 6) {
-                errorAlert.querySelector('span').textContent = 'Password must be at least 6 characters';
-                errorAlert.style.display = 'flex';
-                return;
-            }
-            
-            // Show loading state
             loginBtn.disabled = true;
             loginBtn.textContent = 'Logging in...';
             
-            // Simulate API call
-            setTimeout(function() {
-                // Demo credentials (for testing)
+            // Demo login (use: demo@example.com / password123)
+            setTimeout(() => {
                 if (email === 'demo@example.com' && password === 'password123') {
                     successAlert.querySelector('span').textContent = 'Login successful! Redirecting...';
                     successAlert.style.display = 'flex';
                     
-                    // Redirect after 1 second
-                    setTimeout(function() {
+                    setTimeout(() => {
                         window.location.href = 'dashboard.html';
                     }, 1000);
                 } else {
-                    errorAlert.querySelector('span').textContent = 'Invalid email or password';
+                    errorAlert.querySelector('span').textContent = 'Invalid email or password (Try demo@example.com / password123)';
                     errorAlert.style.display = 'flex';
                     
-                    // Reset button
                     loginBtn.disabled = false;
                     loginBtn.textContent = 'Login';
                 }
             }, 1500);
         }
     </script>
-
-    <!-- Test credentials: demo@example.com / password123 -->
 </body>
 </html>
