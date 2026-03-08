@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Plans - SEO Tools Pro</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 0 60px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .pricing-toggle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin: 3rem 0;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .toggle-slider {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+
+        .save-badge {
+            background: #10b981;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-left: 0.5rem;
+        }
+
+        .pricing-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(99,102,241,0.1);
+        }
+
+        .pricing-card.popular {
+            border: 2px solid #667eea;
+            transform: scale(1.05);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #666;
+        }
+
+        .billing-period {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .pricing-features li {
+            padding: 0.75rem 0;
+            color: #555;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .pricing-features i.fa-check {
+            color: #10b981;
+        }
+
+        .pricing-features i.fa-times {
+            color: #ef4444;
+        }
+
+        .pricing-features li.disabled {
+            opacity: 0.5;
+        }
+
+        .pricing-btn {
+            display: block;
+            text-align: center;
+            padding: 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .pricing-btn.free {
+            background: #f3f4f6;
+            color: #333;
+        }
+
+        .pricing-btn.pro {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .pricing-btn.agency {
+            background: #333;
+            color: white;
+        }
+
+        .pricing-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .faq-section {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 2rem;
+        }
+
+        .faq-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .faq-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .faq-question {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .faq-answer {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .money-back {
+            text-align: center;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+            border-radius: 40px;
+        }
+
+        .money-back i {
+            font-size: 3rem;
+            color: #10b981;
+            margin-bottom: 1rem;
+        }
+
+        .money-back h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .money-back p {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                <span>SEO Tools Pro</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tools/">Tools</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="pricing.html" class="active">Pricing</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <a href="login.html" class="btn-outline">Login</a>
+                <a href="signup.html" class="btn-primary">Sign Up Free</a>
+            </div>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>Simple, Transparent Pricing</h1>
+        <p>Choose the perfect plan for your needs. Start free, upgrade anytime.</p>
+    </section>
+
+    <!-- Pricing Toggle -->
+    <div class="pricing-toggle">
+        <span>Monthly</span>
+        <label class="toggle-switch">
+            <input type="checkbox" id="billingToggle">
+            <span class="toggle-slider"></span>
+        </label>
+        <span>Yearly <span class="save-badge">Save 20%</span></span>
+    </div>
+
+    <!-- Pricing Grid -->
+    <div class="pricing-grid" id="pricingGrid">
+        <!-- Free Plan -->
+        <div class="pricing-card">
+            <div class="pricing-header">
+                <h3>Free</h3>
+                <div class="price" data-monthly="$0" data-yearly="$0">$0<span>/month</span></div>
+                <div class="billing-period">Free forever</div>
+            </div>
+            
+            <ul class="pricing-features">
+                <li><i class="fas fa-check"></i> 50+ Free Tools</li>
+                <li><i class="fas fa-check"></i> 10 Searches/Day</li>
+                <li><i class="fas fa-check"></i> Basic Reports</li>
+                <li><i class="fas fa-check"></i> Email Support</li>
+                <li class="disabled"><i class="fas fa-times"></i> Historical Data</li>
+                <li class="disabled"><i class="fas fa-times"></i> API Access</li>
+                <li class="disabled"><i class="fas fa-times"></i> White Label</li>
+            </ul>
+            
+            <a href="signup.html" class="pricing-btn free">Get Started Free</a>
+        </div>
+
+        <!-- Pro Plan -->
+        <div class="pricing-card popular">
+            <div class="popular-badge">Most Popular</div>
+            <div class="pricing-header">
+                <h3>Pro</h3>
+                <div class="price" data-monthly="$29" data-yearly="$23">$29<span>/month</span></div>
+                <div class="billing-period">billed monthly</div>
+            </div>
+            
+            <ul class="pricing-features">
+                <li><i class="fas fa-check"></i> Everything in Free</li>
+                <li><i class="fas fa-check"></i> Unlimited Searches</li>
+                <li><i class="fas fa-check"></i> Advanced Reports</li>
+                <li><i class="fas fa-check"></i> Priority Support</li>
+                <li><i class="fas fa-check"></i> Historical Data (1 year)</li>
+                <li><i class="fas fa-check"></i> API Access (Basic)</li>
+                <li class="disabled"><i class="fas fa-times"></i> White Label</li>
+            </ul>
+            
+            <a href="signup.html?plan=pro" class="pricing-btn pro">Start Free Trial</a>
+        </div>
+
+        <!-- Agency Plan -->
+        <div class="pricing-card">
+            <div class="pricing-header">
+                <h3>Agency</h3>
+                <div class="price" data-monthly="$79" data-yearly="$63">$79<span>/month</span></div>
+                <div class="billing-period">billed monthly</div>
+            </div>
+            
+            <ul class="pricing-features">
+                <li><i class="fas fa-check"></i> Everything in Pro</li>
+                <li><i class="fas fa-check"></i> Unlimited Websites</li>
+                <li><i class="fas fa-check"></i> White Label Reports</li>
+                <li><i class="fas fa-check"></i> API Access (Premium)</li>
+                <li><i class="fas fa-check"></i> Team Members (5)</li>
+                <li><i class="fas fa-check"></i> Historical Data (5 years)</li>
+                <li><i class="fas fa-check"></i> 24/7 Phone Support</li>
+            </ul>
+            
+            <a href="signup.html?plan=agency" class="pricing-btn agency">Contact Sales</a>
+        </div>
+    </div>
+
+    <!-- Money Back Guarantee -->
+    <div class="money-back">
+        <i class="fas fa-shield-alt"></i>
+        <h3>30-Day Money-Back Guarantee</h3>
+        <p>Try any paid plan risk-free. If you're not satisfied, get a full refund within 30 days.</p>
+    </div>
+
+    <!-- FAQ Section -->
+    <section class="
