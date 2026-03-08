@@ -4,140 +4,1140 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - SEO Tools Pro</title>
-    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { background: #f8fafc; }
-        .dashboard { display: flex; margin-top: 70px; min-height: calc(100vh - 70px); }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background: #f0f2f5;
+            color: #1a2639;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 0.8rem 0;
+        }
+
+        .nav-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4361ee;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #4361ee, #3a0ca3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .notification-icon {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .notification-icon i {
+            font-size: 1.3rem;
+            color: #64748b;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ef4444;
+            color: white;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 20px;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            transition: background 0.3s;
+        }
+
+        .user-profile:hover {
+            background: #f8fafc;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #4361ee, #3a0ca3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .user-info {
+            line-height: 1.3;
+        }
+
+        .user-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .user-role {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        .logout-btn {
+            padding: 0.5rem 1rem;
+            background: #fee2e2;
+            color: #ef4444;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: #ef4444;
+            color: white;
+        }
+
+        /* Dashboard Layout */
+        .dashboard {
+            display: flex;
+            margin-top: 70px;
+            min-height: calc(100vh - 70px);
+        }
+
+        /* Sidebar */
         .sidebar {
-            width: 260px; background: white; box-shadow: 2px 0 10px rgba(0,0,0,0.05);
-            position: fixed; height: calc(100vh - 70px); overflow-y: auto;
+            width: 280px;
+            background: white;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.02);
+            position: fixed;
+            height: calc(100vh - 70px);
+            overflow-y: auto;
+            transition: all 0.3s;
         }
-        .user-info { padding: 2rem 1.5rem; border-bottom: 1px solid #eee; }
-        .user-avatar { width: 50px; height: 50px; background: #667eea; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; }
-        .plan-badge { margin-top: 1rem; padding: 0.3rem 1rem; background: #f0f0f0; border-radius: 20px; font-size: 0.85rem; display: inline-block; }
-        .nav-menu { list-style: none; padding: 1.5rem 0; }
-        .nav-item a {
-            display: flex; align-items: center; gap: 1rem; padding: 0.8rem 1.5rem;
-            color: #666; text-decoration: none; transition: all 0.3s;
+
+        .sidebar-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #eef2f6;
         }
-        .nav-item a:hover, .nav-item a.active { background: #f8fafc; color: #667eea; border-left: 3px solid #667eea; }
-        .main-content { flex: 1; margin-left: 260px; padding: 2rem; }
+
+        .plan-card {
+            background: linear-gradient(135deg, #4361ee, #3a0ca3);
+            color: white;
+            padding: 1.2rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .plan-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .plan-price {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .upgrade-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            margin-top: 0.8rem;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+
+        .upgrade-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .usage-stats {
+            margin-top: 1rem;
+        }
+
+        .usage-item {
+            margin-bottom: 1rem;
+        }
+
+        .usage-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-bottom: 0.3rem;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: #eef2f6;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #4361ee;
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        .nav-section {
+            padding: 1.5rem 0;
+        }
+
+        .nav-title {
+            padding: 0 1.5rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #94a3b8;
+            margin-bottom: 1rem;
+        }
+
+        .nav-menu {
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-bottom: 0.3rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem 1.5rem;
+            color: #475569;
+            text-decoration: none;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-link:hover {
+            background: #f8fafc;
+            color: #4361ee;
+        }
+
+        .nav-link.active {
+            background: #eef2ff;
+            color: #4361ee;
+            border-left-color: #4361ee;
+        }
+
+        .nav-link i {
+            width: 20px;
+            font-size: 1.1rem;
+        }
+
+        .badge {
+            margin-left: auto;
+            background: #fee2e2;
+            color: #ef4444;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            padding: 2rem;
+        }
+
+        /* Welcome Banner */
         .welcome-banner {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white; padding: 2rem; border-radius: 10px; margin-bottom: 2rem;
+            background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            animation: slideIn 0.5s ease;
         }
-        .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; margin-bottom: 2rem; }
-        .stat-card {
-            background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            display: flex; justify-content: space-between; align-items: center;
+
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
-        .stat-number { font-size: 2rem; font-weight: 700; color: #667eea; }
-        .chart-card {
-            background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+
+        .welcome-text h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .welcome-text p {
+            opacity: 0.9;
+        }
+
+        .date-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
             margin-bottom: 2rem;
         }
-        .activity-list { list-style: none; }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.02);
+            transition: all 0.3s;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(67,97,238,0.1);
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .stat-title {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .stat-icon {
+            width: 45px;
+            height: 45px;
+            background: #eef2ff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stat-icon i {
+            font-size: 1.5rem;
+            color: #4361ee;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a2639;
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-change {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.85rem;
+        }
+
+        .stat-change.positive {
+            color: #10b981;
+        }
+
+        .stat-change.negative {
+            color: #ef4444;
+        }
+
+        /* Charts Row */
+        .charts-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .chart-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.02);
+            animation: fadeIn 0.6s ease;
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .chart-header h3 {
+            font-size: 1.1rem;
+            color: #1a2639;
+        }
+
+        .chart-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .chart-btn {
+            padding: 0.3rem 0.8rem;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .chart-btn:hover,
+        .chart-btn.active {
+            background: #4361ee;
+            color: white;
+            border-color: #4361ee;
+        }
+
+        .chart-container {
+            height: 250px;
+            display: flex;
+            align-items: flex-end;
+            gap: 1rem;
+            padding: 1rem 0;
+        }
+
+        .chart-bar {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .bar {
+            width: 100%;
+            background: #eef2ff;
+            border-radius: 8px;
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #4361ee;
+            border-radius: 8px;
+            transition: height 1s ease;
+            animation: growBar 1s ease;
+        }
+
+        @keyframes growBar {
+            from { height: 0; }
+            to { height: var(--height); }
+        }
+
+        .bar-label {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        /* Activity & Tasks */
+        .activity-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .activity-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.02);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-header h3 {
+            font-size: 1.1rem;
+            color: #1a2639;
+        }
+
+        .view-all {
+            color: #4361ee;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .activity-list {
+            list-style: none;
+        }
+
         .activity-item {
-            display: flex; align-items: center; gap: 1rem; padding: 1rem 0;
-            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #eef2f6;
+            animation: slideInRight 0.5s ease;
+            animation-fill-mode: both;
         }
-        .projects-table {
-            background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+
+        .activity-item:nth-child(1) { animation-delay: 0.1s; }
+        .activity-item:nth-child(2) { animation-delay: 0.2s; }
+        .activity-item:nth-child(3) { animation-delay: 0.3s; }
+        .activity-item:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes slideInRight {
+            from { transform: translateX(20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
         }
-        table { width: 100%; border-collapse: collapse; }
-        th { text-align: left; padding: 1rem; background: #f8fafc; }
-        td { padding: 1rem; border-bottom: 1px solid #eee; }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            background: #eef2ff;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4361ee;
+        }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-text {
+            font-weight: 500;
+            margin-bottom: 0.2rem;
+        }
+
+        .activity-time {
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+
+        /* Tasks */
+        .task-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #eef2f6;
+        }
+
+        .task-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #cbd5e1;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .task-checkbox.checked {
+            background: #4361ee;
+            border-color: #4361ee;
+            position: relative;
+        }
+
+        .task-checkbox.checked::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: white;
+            font-size: 0.7rem;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .task-content {
+            flex: 1;
+        }
+
+        .task-title {
+            font-weight: 500;
+            margin-bottom: 0.2rem;
+        }
+
+        .task-title.completed {
+            text-decoration: line-through;
+            color: #94a3b8;
+        }
+
+        .task-date {
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+
+        .task-priority {
+            padding: 0.2rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .priority-high {
+            background: #fee2e2;
+            color: #ef4444;
+        }
+
+        .priority-medium {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .priority-low {
+            background: #d1fae5;
+            color: #10b981;
+        }
+
+        /* Projects Table */
+        .projects-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.02);
+            margin-bottom: 2rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-header h3 {
+            font-size: 1.1rem;
+            color: #1a2639;
+        }
+
+        .add-btn {
+            background: #4361ee;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .add-btn:hover {
+            background: #3a0ca3;
+            transform: translateY(-2px);
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            text-align: left;
+            padding: 1rem;
+            background: #f8fafc;
+            color: #64748b;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid #eef2f6;
+        }
+
+        .project-name {
+            font-weight: 600;
+            color: #1a2639;
+        }
+
+        .project-url {
+            font-size: 0.85rem;
+            color: #4361ee;
+        }
+
         .status-badge {
-            padding: 0.2rem 0.8rem; border-radius: 15px; font-size: 0.85rem;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
         }
-        .status-badge.active { background: #d4edda; color: #155724; }
-        .progress-bar { width: 100px; height: 6px; background: #eee; border-radius: 3px; }
-        .progress-fill { height: 100%; background: #667eea; border-radius: 3px; }
+
+        .status-active {
+            background: #d1fae5;
+            color: #10b981;
+        }
+
+        .status-pending {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .status-paused {
+            background: #fee2e2;
+            color: #ef4444;
+        }
+
+        .progress-container {
+            width: 100px;
+            height: 6px;
+            background: #eef2f6;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-value {
+            height: 100%;
+            background: #4361ee;
+            border-radius: 3px;
+        }
+
+        .action-btn {
+            padding: 0.4rem 0.8rem;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-right: 0.3rem;
+        }
+
+        .action-btn:hover {
+            background: #4361ee;
+            color: white;
+            border-color: #4361ee;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .quick-action-card {
+            background: white;
+            padding: 1.2rem;
+            border-radius: 12px;
+            text-align: center;
+            text-decoration: none;
+            color: #1a2639;
+            transition: all 0.3s;
+            animation: fadeIn 0.7s ease;
+        }
+
+        .quick-action-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(67,97,238,0.1);
+        }
+
+        .quick-action-icon {
+            width: 50px;
+            height: 50px;
+            background: #eef2ff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.8rem;
+        }
+
+        .quick-action-icon i {
+            font-size: 1.5rem;
+            color: #4361ee;
+        }
+
+        .quick-action-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .quick-action-desc {
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+
+        /* Recent Keywords */
+        .keywords-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.02);
+            margin-bottom: 2rem;
+        }
+
+        .keywords-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .keyword-item {
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        .keyword-name {
+            font-weight: 600;
+            color: #1a2639;
+            margin-bottom: 0.3rem;
+        }
+
+        .keyword-rank {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .rank-position {
+            font-weight: 600;
+            color: #4361ee;
+        }
+
+        .rank-change {
+            display: flex;
+            align-items: center;
+            gap: 0.2rem;
+        }
+
+        .rank-change.up {
+            color: #10b981;
+        }
+
+        .rank-change.down {
+            color: #ef4444;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .charts-row,
+            .activity-grid,
+            .quick-actions,
+            .keywords-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         @media (max-width: 768px) {
-            .sidebar { transform: translateX(-100%); }
-            .main-content { margin-left: 0; }
-            .stats-grid { grid-template-columns: 1fr; }
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .welcome-banner {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
         }
     </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo"><i class="fas fa-chart-line"></i><span>SEO Tools Pro</span></div>
-            <div style="display:flex; align-items:center; gap:1rem;">
-                <span>Welcome, John!</span>
-                <a href="login.html" class="btn-outline">Logout</a>
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                <span>SEO Tools Pro</span>
+            </div>
+            <div class="user-menu">
+                <div class="notification-icon">
+                    <i class="far fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </div>
+                <div class="user-profile">
+                    <div class="user-avatar">JD</div>
+                    <div class="user-info">
+                        <div class="user-name">John Doe</div>
+                        <div class="user-role">Pro Member</div>
+                    </div>
+                </div>
+                <a href="login.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
             </div>
         </div>
     </nav>
 
     <div class="dashboard">
         <aside class="sidebar">
-            <div class="user-info">
-                <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1rem;">
-                    <div class="user-avatar">JD</div>
-                    <div><h4>John Doe</h4><p style="color:#666;">john@example.com</p></div>
+            <div class="sidebar-header">
+                <div class="plan-card">
+                    <div class="plan-name">Pro Plan</div>
+                    <div class="plan-price">$29/month • Renews on Apr 15, 2024</div>
+                    <button class="upgrade-btn"><i class="fas fa-crown"></i> Upgrade to Agency</button>
                 </div>
-                <span class="plan-badge">Pro Plan</span>
-            </div>
-            <ul class="nav-menu">
-                <li class="nav-item"><a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
-                <li class="nav-item"><a href="#"><i class="fas fa-key"></i> Keywords</a></li>
-                <li class="nav-item"><a href="#"><i class="fas fa-link"></i> Backlinks</a></li>
-                <li class="nav-item"><a href="#"><i class="fas fa-chart-line"></i> Rankings</a></li>
-                <li class="nav-item"><a href="#"><i class="fas fa-file-alt"></i> Reports</a></li>
-                <li class="nav-item"><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
-            </ul>
-        </aside>
-
-        <main class="main-content">
-            <div class="welcome-banner">
-                <h1>Welcome back, John! 👋</h1>
-                <p>Your websites are performing well today</p>
-            </div>
-
-            <div class="stats-grid">
-                <div class="stat-card"><div><h3>Keywords</h3><div class="stat-number">2,547</div></div><i class="fas fa-key" style="font-size:2rem; color:#667eea;"></i></div>
-                <div class="stat-card"><div><h3>Backlinks</h3><div class="stat-number">12.4K</div></div><i class="fas fa-link" style="font-size:2rem; color:#667eea;"></i></div>
-                <div class="stat-card"><div><h3>Domain Rating</h3><div class="stat-number">67</div></div><i class="fas fa-chart-line" style="font-size:2rem; color:#667eea;"></i></div>
-                <div class="stat-card"><div><h3>Pages</h3><div class="stat-number">8,943</div></div><i class="fas fa-file" style="font-size:2rem; color:#667eea;"></i></div>
-            </div>
-
-            <div class="chart-card">
-                <h3 style="margin-bottom:1rem;">Rankings Overview</h3>
-                <div style="height:200px; background:#f8fafc; border-radius:8px; display:flex; align-items:center; justify-content:center; color:#666;">
-                    [Chart Area - Rankings Graph]
-                </div>
-            </div>
-
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-bottom:2rem;">
-                <div class="chart-card">
-                    <h3 style="margin-bottom:1rem;">Recent Activity</h3>
-                    <ul class="activity-list">
-                        <li class="activity-item"><i class="fas fa-search" style="color:#667eea;"></i> <div><p>SEO Audit completed</p><small>2 hours ago</small></div></li>
-                        <li class="activity-item"><i class="fas fa-key" style="color:#667eea;"></i> <div><p>50 keywords added</p><small>5 hours ago</small></div></li>
-                        <li class="activity-item"><i class="fas fa-link" style="color:#667eea;"></i> <div><p>15 new backlinks</p><small>Yesterday</small></div></li>
-                    </ul>
-                </div>
-                <div class="chart-card">
-                    <h3 style="margin-bottom:1rem;">Quick Actions</h3>
-                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
-                        <a href="#" style="text-align:center; padding:1rem; background:#f8fafc; border-radius:8px; text-decoration:none; color:#333;"><i class="fas fa-plus"></i> New Project</a>
-                        <a href="#" style="text-align:center; padding:1rem; background:#f8fafc; border-radius:8px; text-decoration:none; color:#333;"><i class="fas fa-search"></i> Run Audit</a>
+                
+                <div class="usage-stats">
+                    <div class="usage-item">
+                        <div class="usage-label">
+                            <span>Keywords Used</span>
+                            <span>1,234 / 5,000</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 25%"></div>
+                        </div>
+                    </div>
+                    <div class="usage-item">
+                        <div class="usage-label">
+                            <span>Backlinks Checked</span>
+                            <span>12.4K / 50K</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 25%"></div>
+                        </div>
+                    </div>
+                    <div class="usage-item">
+                        <div class="usage-label">
+                            <span>Projects</span>
+                            <span>8 / 15</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 53%"></div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="projects-table">
-                <h3 style="margin-bottom:1.5rem;">Your Projects</h3>
-                <table>
-                    <tr><th>Project</th><th>Keywords</th><th>Backlinks</th><th>Status</th><th>Progress</th></tr>
-                    <tr><td>example.com</td><td>1,234</td><td>5,678</td><td><span class="status-badge active">Active</span></td><td><div class="progress-bar"><div class="progress-fill" style="width:75%"></div></div></td></tr>
-                    <tr><td>myblog.com</td><td>892</td><td>2,145</td><td><span class="status-badge active">Active</span></td><td><div class="progress-bar"><div class="progress-fill" style="width:45%"></div></div></td></tr>
-                </table>
+            <div class="nav-section">
+                <div class="nav-title">Main</div>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="#" class="nav-link active"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-chart-line"></i> Analytics</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-file-alt"></i> Reports</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-calendar"></i> Schedule</a></li>
+                </ul>
             </div>
-        </main>
-    </div>
-</body>
-</html>
+
+            <div class="nav-section">
+                <div class="nav-title">SEO Tools</div>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-key"></i> Keyword Research</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-link"></i> Backlink Checker</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-search"></i> SEO Analyzer</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-chart-simple"></i> Rank Tracker</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-sitemap"></i> Site Audit</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-code"></i> Meta Generator</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">Projects</div>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-globe"></i> example.com</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-globe"></i> myblog.com</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-globe"></i> onlineshop.net</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-plus-circle"></i> Add New Project</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">Account</div>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-user"></i> Profile</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-cog"></i> Settings</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-question-circle"></i> Help</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-crown"></i> Upgrade Plan <span class="badge">Pro</span></a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="welcome-banner">
+                <div class="welcome-text">
+                    <h1>Welcome back, John! 👋</h1>
+                    <p>Your websites are performing well. Here's what's happening today.</p>
+                </div>
+                <div class="date-badge">
+                    <i class="far fa-calendar"></i> Monday, March 25, 2024
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-title">Total Keywords</span>
+                        <div class="stat-icon"><i class="fas fa-key"></i></div>
+                    </div>
+                    <div class="stat-value">2,547</div>
+                    <div class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i> 12.5% from last month
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-title">Backlinks</span>
+                        <div class="stat-icon"><i class="fas fa-link"></i></div>
+                    </div>
+                    <div class="stat-value">12.4K</div>
+                    <div class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i> 8.2% from last month
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-title">Domain Rating</span>
+                        <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+                    </div>
+                    <div class="stat-value">67</div>
+                    <div class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i> +5 points
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-title">Pages Audited</span>
+                        <div class="stat-icon"><i class="fas fa-file-alt"></i></div>
+                    </div>
+                    <div class="stat-value">8,943</div>
+                    <div class="stat-change negative">
+                        <i class="fas fa-arrow-down"></i> 3 issues found
+                    </div>
+                </div>
+            </div>
+
+            <div class="charts-row">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Rankings Overview</h3>
+                        <div class="chart-actions">
+                            <button class="chart-btn active">Week</button>
+                            <button class="chart-btn">Month</button>
+                            <button class="chart-btn">Year</button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <div class="chart-bar"><div class="bar"><div class="bar-fill" style="height: 70%; --height: 70%;"></div></div><span class="bar-label">Mon</span></div>
+                        <div class="chart-bar"><div class="bar"><div class="bar-fill" style="height: 85%; --height: 85%;"></div></div><span class="bar-label">Tue</span></div>
+                        <div class="chart-bar"><div class="bar"><div class="bar-fill" style="height: 65%; --height: 65%;"></div></div><span class="bar-label">Wed</span></div>
+                        <div class="chart-bar"><div class="bar"><div class="bar-fill" style="height: 90%; --height: 90%;"></div></div><span class="bar-label">Thu</span></div>
+                        <div class="chart-bar"><div class="bar"><div class="bar-fill" style="height: 75%; --height: 75%;"></div></div><span class="bar-label">Fri</span></div>
+                        <div class="chart-bar"><div class="bar"><div class="bar-fill" style="height: 60%; --height: 60%;"></div></div><span class="bar-label">Sat</span></div>
+                        <div class="chart-bar"><div class="bar"><div class="bar-fill" style="height: 55%; --height: 55%;"></div></div><span class="bar-label">Sun</span></div>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Traffic Sources</h3>
+                    </div>
+                    <div style="padding: 2rem; text-align: center;">
+                        <i class="fas fa-chart-pie" style="font-size: 8rem; color: #4361ee; opacity: 0.3;"></i>
+                        <p style="color: #64748b; margin-top: 1rem;">Organic: 45% | Direct: 30% | Referral: 15% | Social: 10%</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity-grid">
+                <div class="activity-card">
+                    <div class="card-header">
+                        <h3>Recent Activity</h3>
+                        <a href="#" class="view-all">View All</a>
+                    </div>
+                    <ul class="activity-list">
+                        <li class="activity-item">
+                            <div class="activity-icon"><i class="fas fa-search"></i></div>
+                            <div class="activity-content">
+                                <div class="activity-text">SEO Audit completed for example.com</div>
+                                <div class="activity-time">2 hours ago</div>
+                            </div>
+                        </li>
+                        <li class="activity-item">
+                            <div class="activity-icon"><i class="fas fa-key"></i></div>
+                            <div class="activity-content">
+                                <div class="activity-text">50 new keywords added to tracking</div>
+                                <div class="activity-time">5 hours ago</div>
+                            </div>
+                        </li>
+                        <li class="activity-item">
+                            <div class="activity-icon"><i class="fas fa-link"></i></div>
+                            <div class="activity-content">
+                                <div class="activity-text">15 new backlinks discovered</div>
+                                <div class="activity-time">Yesterday</div>
+                            </div>
+                        </li>
+                        <li class="activity-item">
+                            <div class="activity-icon"><i class="fas fa-file
