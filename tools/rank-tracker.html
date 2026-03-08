@@ -1,1 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rank Tracker - SEO Tools Pro</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .tool-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 120px 0 60px; text-align: center; }
+        .tool-container { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem; }
+        .tracker-form {
+            background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            display: grid; grid-template-columns: 2fr 1fr 1fr auto; gap: 1rem; margin-bottom: 2rem;
+        }
+        .tracker-form input, .tracker-form select { padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px; }
+        .rank-card {
+            background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;
+        }
+        .rank-up { color: #28a745; }
+        .rank-down { color: #dc3545; }
+        .graph-placeholder {
+            background: #f8fafc; height: 200px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center; margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">[navigation]</nav>
 
+    <section class="tool-header">
+        <h1>Rank Tracker</h1>
+        <p>Track your keyword rankings on Google</p>
+    </section>
+
+    <div class="tool-container">
+        <div class="tracker-form">
+            <input type="text" placeholder="Enter keyword">
+            <select><option>Google.com</option><option>Google.co.uk</option></select>
+            <select><option>All Devices</option><option>Mobile</option><option>Desktop</option></select>
+            <button class="btn-primary" onclick="trackRank()">Track</button>
+        </div>
+
+        <div class="graph-placeholder">
+            <i class="fas fa-chart-line" style="font-size: 3rem; color: #667eea; margin-right: 1rem;"></i>
+            <span>Ranking history chart will appear here</span>
+        </div>
+
+        <div class="rank-card">
+            <div><h3>seo tools</h3><p>Google.com, Mobile</p></div>
+            <div style="text-align: center;"><span style="font-size:1.5rem; font-weight:700;">#4</span><br>Current</div>
+            <div style="text-align: center;"><span style="font-size:1.5rem;">#7</span><br>Previous</div>
+            <div class="rank-up"><i class="fas fa-arrow-up"></i> +3</div>
+        </div>
+        <div class="rank-card">
+            <div><h3>backlink checker</h3><p>Google.com, Desktop</p></div>
+            <div><span style="font-size:1.5rem; font-weight:700;">#12</span><br>Current</div>
+            <div><span style="font-size:1.5rem;">#9</span><br>Previous</div>
+            <div class="rank-down"><i class="fas fa-arrow-down"></i> -3</div>
+        </div>
+    </div>
+
+    <script>
+        function trackRank() { alert('Tracking rankings...'); }
+    </script>
+</body>
+</html>
