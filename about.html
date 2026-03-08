@@ -4,490 +4,92 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - SEO Tools Pro</title>
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #0f172a;
-            color: #fff;
-            line-height: 1.6;
-        }
-
-        /* Navigation */
-        .navbar {
-            background: #1e293b;
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid #334155;
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #667eea;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-menu a {
-            color: #fff;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .nav-menu a:hover,
-        .nav-menu a.active {
-            color: #667eea;
-        }
-
-        .nav-buttons {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .btn-outline {
-            padding: 0.5rem 1.5rem;
-            border: 2px solid #667eea;
-            border-radius: 8px;
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .btn-outline:hover {
-            background: #667eea;
-            color: #fff;
-        }
-
-        .btn-primary {
-            padding: 0.5rem 1.5rem;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 8px;
-            color: #fff;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        /* Hero Section */
-        .about-hero {
-            padding: 120px 2rem 4rem;
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 0 80px;
             text-align: center;
         }
-
-        .about-hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .about-hero p {
-            font-size: 1.2rem;
-            color: #94a3b8;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        /* Stats Section */
-        .stats-section {
-            max-width: 1400px;
-            margin: 4rem auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-        }
-
-        .stat-box {
-            background: #1e293b;
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            border: 1px solid #334155;
-            transition: all 0.3s;
-        }
-
-        .stat-box:hover {
-            transform: translateY(-10px);
-            border-color: #667eea;
-        }
-
-        .stat-box i {
-            font-size: 2.5rem;
-            color: #667eea;
-            margin-bottom: 1rem;
-        }
-
-        .stat-box h3 {
-            font-size: 2.5rem;
-            color: #667eea;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-box p {
-            color: #94a3b8;
-            font-size: 1.1rem;
-        }
-
-        /* Story Section */
-        .story-section {
-            max-width: 1400px;
-            margin: 4rem auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .story-content h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: #fff;
-        }
-
-        .story-content h2 span {
-            color: #667eea;
-        }
-
-        .story-content p {
-            color: #94a3b8;
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-        }
-
-        .story-image img {
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-
-        /* Team Section */
-        .team-section {
-            max-width: 1400px;
-            margin: 4rem auto;
-            padding: 0 2rem;
-        }
-
-        .team-section h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .team-section h2 span {
-            color: #667eea;
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-        }
-
-        .team-member {
-            background: #1e293b;
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            border: 1px solid #334155;
-            transition: all 0.3s;
-        }
-
-        .team-member:hover {
-            transform: translateY(-10px);
-            border-color: #667eea;
-        }
-
-        .member-img {
-            width: 120px;
-            height: 120px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 50%;
-            margin: 0 auto 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: #fff;
-        }
-
-        .team-member h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .team-member p {
-            color: #94a3b8;
-            margin-bottom: 1rem;
-        }
-
-        .member-social {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-        }
-
-        .member-social a {
-            color: #94a3b8;
-            transition: color 0.3s;
-        }
-
-        .member-social a:hover {
-            color: #667eea;
-        }
-
-        /* Values Section */
-        .values-section {
-            background: #1e293b;
-            padding: 4rem 2rem;
-            margin: 4rem 0;
-        }
-
-        .values-content {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .values-content h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .value-card {
-            text-align: center;
-        }
-
-        .value-icon {
-            width: 80px;
-            height: 80px;
-            background: #2d3748;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-        }
-
-        .value-icon i {
-            font-size: 2rem;
-            color: #667eea;
-        }
-
-        .value-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-        }
-
-        .value-card p {
-            color: #94a3b8;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            max-width: 1400px;
-            margin: 4rem auto;
-            padding: 4rem 2rem;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 40px;
-            text-align: center;
-        }
-
-        .cta-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .cta-section p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .cta-btn {
-            display: inline-block;
-            padding: 1rem 3rem;
-            background: #fff;
-            color: #667eea;
-            text-decoration: none;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-        }
-
-        .cta-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-
-        /* Footer */
-        .footer {
-            background: #1e293b;
-            color: #fff;
-            padding: 4rem 2rem 2rem;
-            margin-top: 4rem;
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 3rem;
-        }
-
-        .footer-section h3 {
-            margin-bottom: 1.5rem;
-            color: #667eea;
-        }
-
-        .footer-section p {
-            color: #94a3b8;
-            line-height: 1.8;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-section ul li a {
-            color: #94a3b8;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-section ul li a:hover {
-            color: #667eea;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .social-links a {
-            width: 40px;
-            height: 40px;
-            background: #2d3748;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .social-links a:hover {
-            background: #667eea;
-            transform: translateY(-3px);
-        }
-
-        .footer-bottom {
-            max-width: 1400px;
-            margin: 3rem auto 0;
-            padding-top: 2rem;
-            border-top: 1px solid #334155;
-            text-align: center;
-            color: #94a3b8;
-        }
-
-        @media (max-width: 1024px) {
-            .stats-section,
-            .team-grid,
-            .values-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .story-section {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
+        .page-header h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .page-header p { font-size: 1.2rem; opacity: 0.9; max-width: 700px; margin: 0 auto; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .about-content h2 { font-size: 2.5rem; margin-bottom: 1.5rem; color: #333; }
+        .about-content h2 span { color: #667eea; }
+        .about-content p { color: #666; margin-bottom: 1.5rem; font-size: 1.1rem; line-height: 1.8; }
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin: 4rem 0; }
+        .stat-card { text-align: center; padding: 2rem; background: white; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
+        .stat-card h3 { font-size: 2.5rem; color: #667eea; margin-bottom: 0.5rem; }
+        .stat-card p { color: #666; }
+        .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-top: 3rem; }
+        .team-member { text-align: center; }
+        .member-img { width: 150px; height: 150px; background: #667eea; border-radius: 50%; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem; }
+        .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin: 3rem 0; }
+        .value-card { text-align: center; padding: 2rem; background: white; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
+        .value-card i { font-size: 2.5rem; color: #667eea; margin-bottom: 1rem; }
         @media (max-width: 768px) {
-            .stats-section,
-            .team-grid,
-            .values-grid,
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .about-hero h1 {
-                font-size: 2.5rem;
-            }
+            .about-grid, .stats-grid, .team-grid, .values-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">
-                <i class="fas fa-chart-line"></i>
-                <span>SEO Tools Pro</span>
-            </div>
+            <div class="logo"><i class="fas fa-chart-line"></i><span>SEO Tools Pro</span></div>
             <ul class="nav-menu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="tools.html">Tools</a></li>
                 <li><a href="pricing.html">Pricing</a></li>
                 <li><a href="about.html" class="active">About</a></li>
-                <li><a href="blog.html">Blog</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
             <div class="nav-buttons">
                 <a href="login.html" class="btn-outline">Login</a>
-                <a href="signup.html" class="btn-primary">Sign Up Free</a>
+                <a href="signup.html" class="btn-primary">Sign Up</a>
             </div>
         </div>
     </nav>
 
-    <section class="about-hero">
-        <h1>Empowering Websites to Reach Their Full Potential</h1>
-        <p>We're on a mission to make professional SEO tools accessible to everyone, from beginners to experts.</p>
+    <section class="page-header">
+        <h1>About SEO Tools Pro</h1>
+        <p>We're on a mission to make professional SEO tools accessible to everyone</p>
     </section>
 
-    <
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-content">
+                <h2>Our <span>Story</span></h2>
+                <p>Founded in 2020, SEO Tools Pro started with a simple idea: make professional SEO tools accessible to everyone. We noticed that many website owners were struggling with expensive SEO software.</p>
+                <p>Our team of SEO experts came together to create tools that are powerful enough for professionals but simple for beginners. Today, we serve over 100,000 users worldwide.</p>
+            </div>
+            <div class="about-image">
+                <img src="https://via.placeholder.com/500x400/667eea/ffffff?text=Our+Journey" alt="About Us" style="width:100%; border-radius:10px;">
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card"><h3>100K+</h3><p>Happy Users</p></div>
+            <div class="stat-card"><h3>50+</h3><p>SEO Tools</p></div>
+            <div class="stat-card"><h3>1M+</h3><p>Analyses Done</p></div>
+        </div>
+
+        <h2 style="text-align: center; margin: 3rem 0 2rem;">Our <span style="color:#667eea;">Core Values</span></h2>
+        <div class="values-grid">
+            <div class="value-card"><i class="fas fa-heart"></i><h3>User First</h3><p>Your success is our success</p></div>
+            <div class="value-card"><i class="fas fa-shield-alt"></i><h3>Accuracy</h3><p>Data you can trust</p></div>
+            <div class="value-card"><i class="fas fa-lightbulb"></i><h3>Innovation</h3><p>Always improving</p></div>
+        </div>
+
+        <h2 style="text-align: center; margin: 3rem 0 2rem;">Meet Our <span style="color:#667eea;">Team</span></h2>
+        <div class="team-grid">
+            <div class="team-member"><div class="member-img">JD</div><h3>John Doe</h3><p>Founder</p></div>
+            <div class="team-member"><div class="member-img">JS</div><h3>Jane Smith</h3><p>SEO Expert</p></div>
+            <div class="team-member"><div class="member-img">MJ</div><h3>Mike Johnson</h3><p>Developer</p></div>
+            <div class="team-member"><div class="member-img">SW</div><h3>Sarah Wilson</h3><p>Support</p></div>
+        </div>
+    </div>
+</body>
+</html>
