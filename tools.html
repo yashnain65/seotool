@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All SEO Tools - SEO Tools Pro</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 0 60px;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Search and Filter */
+        .tools-filter {
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+            padding: 0 2rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .search-box {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+        }
+        
+        .search-box i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .search-box input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
+        }
+        
+        .filter-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 30px;
+            color: #64748b;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        
+        /* Tools Categories */
+        .category-section {
+            max-width: 1400px;
+            margin: 0 auto 4rem;
+            padding: 0 2rem;
+        }
+        
+        .category-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #333;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: #667eea;
+            border-radius: 2px;
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+        
+        .tool-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            border: 1px solid #eef2f6;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(102,126,234,0.1);
+            border-color: #667eea;
+        }
+        
+        .tool-icon {
+            width: 60px;
+            height: 60px;
+            background: #eef2ff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.2rem;
+        }
+        
+        .tool-icon i {
+            font-size: 2rem;
+            color: #667eea;
+        }
+        
+        .tool-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: #333;
+        }
+        
+        .tool-card p {
+            color: #64748b;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+            flex: 1;
+        }
+        
+        .tool-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+        
+        .tool-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        .tool-meta i {
+            color: #667eea;
+        }
+        
+        .tool-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .tool-link:hover {
+            gap: 1rem;
+        }
+        
+        /* Popular Badge */
+        .popular-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #10b981;
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        /* Free Badge */
+        .free-badge {
+            display: inline-block;
+            background: #eef2ff;
+            color: #667eea;
+            padding: 0.2rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 4rem;
+            display: none;
+        }
+        
+        .no-results i {
+            font-size: 4rem;
+            color: #cbd5e1;
+            margin-bottom: 1rem;
+        }
+        
+        .no-results h3 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        
+        .no-results p {
+            color: #94a3b8;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .tools-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .tools-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .tools-filter {
+                flex-direction: column;
+            }
+            
+            .search-box {
+                min-width: 100%;
+            }
+            
+            .filter-buttons {
+                justify-content: center;
+            }
+            
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .category-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                <span>SEO Tools Pro</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tools.html" class="active">Tools</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <a href="login.html" class="btn-outline">Login</a>
+                <a href="signup.html" class="btn-primary">Sign Up</a>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>All SEO Tools</h1>
+        <p>50+ professional SEO tools to help you rank higher on search engines. All tools are 100% free!</p>
+    </section>
+
+    <!-- Search and Filter -->
+    <div class="tools-filter">
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Search tools by name or description..." onkeyup="filterTools()">
+        </div>
+        <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterByCategory('all')">All</button>
+            <button class="filter-btn" onclick="filterByCategory('research')">Keyword Research</button>
+            <button class="filter-btn" onclick="filterByCategory('analysis')">SEO Analysis</button>
+            <button class="filter-btn" onclick="filterByCategory('backlinks')">Backlinks</button>
+            <button class="filter-btn" onclick="filterByCategory('content')">Content</button>
+            <button class="filter-btn" onclick="filterByCategory('technical')">Technical</button>
+        </div>
+    </div>
+
+    <!-- Keyword Research Category -->
+    <div class="category-section" data-category="research">
+        <h2 class="category-title">🔑 Keyword Research Tools</h2>
+        <div class="tools-grid">
+            <div class="tool-card" data-name="Keyword Research Tool" data-category="research">
+                <span class="free-badge">FREE</span>
+                <div class="tool-icon"><i class="fas fa-key"></i></div>
+                <h3>Keyword Research</h3>
+                <p>Find thousands of relevant keywords with search volume, CPC, and competition data.</p>
+                <div class="tool-meta">
+                    <span><i class="fas fa-database"></i> 10M+ keywords</span>
+                    <span><i class="fas fa-chart-line"></i> 50/day free</span>
+                </div>
+                <a href="tools/keyword-research.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="tool-card" data-name="Keyword Difficulty Checker" data-category="research">
+                <span class="free-badge">FREE</span>
+                <div class="tool-icon"><i class="fas fa-chart-bar"></i></div>
+                <h3>Keyword Difficulty</h3>
+                <p>Check how hard it is to rank for any keyword with our difficulty score.</p>
+                <div class="tool-meta">
+                    <span><i class="fas fa-star"></i> 0-100 score</span>
+                    <span><i class="fas fa-chart-line"></i> Unlimited</span>
+                </div>
+                <a href="tools/keyword-difficulty.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="tool-card" data-name="LSI Keywords Generator" data-category="research">
+                <span class="free-badge">FREE</span>
+                <div class="tool-icon"><i class="fas fa-tags"></i></div>
+                <h3>LSI Keywords</h3>
+                <p>Generate LSI keywords to improve your content relevance and rankings.</p>
+                <div class="tool-meta">
+                    <span><i class="fas fa-magic"></i> 100+ suggestions</span>
+                    <span><i class="fas fa-chart-line"></i> 30/day free</span>
+                </div>
+                <a href="tools/lsi-keywords.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="tool-card popular" data-name="Question Research" data-category="research">
+                <span class="popular-badge">Popular</span>
+                <span class="free-badge">FREE</span>
+                <div class="tool-icon"><i class="fas fa-question-circle"></i></div>
+                <h3>Question Research</h3>
+                <p>Find questions people are asking about your keywords.</p>
+                <div class="tool-meta">
+                    <span><i class="fas fa-question"></i> 1000+ questions</span>
+                    <span><i class="fas fa-chart-line"></i> 20/day free</span>
+                </div>
+                <a href="tools/question-research.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEO Analysis Category -->
+    <div class="category-section" data-category="analysis">
+        <h2 class="category-title">🔍 SEO Analysis Tools</h2>
+        <div class="tools-grid">
+            <div class="tool-card popular" data-name="SEO Analyzer" data-category="analysis">
+                <span class="popular-badge">Popular</span>
+                <span class="free-badge">FREE</span>
+                <div class="tool-icon"><i class="fas fa-search"></i></div>
+                <h3>SEO Analyzer</h3>
+                <p>Comprehensive website analysis with 100+ SEO checks and recommendations.</p>
+                <div class="tool-meta">
+                    <span><i class="fas fa-check-circle"></i> 100+ checks</span>
+                    <span><i class="fas fa-chart-line"></i> 10/day free</span>
+                </div>
+                <a href="tools/seo-analyzer.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="tool-card" data-name="Site Audit" data-category="analysis">
+                <span class="free-badge">FREE</span>
+                <div class="tool-icon"><i class="fas fa-file-alt"></i></div>
+                <h3>Site Audit</h3>
+                <p>Complete website crawl to find technical SEO issues and errors.</p>
+                <div class="tool-meta">
+                    <span><i class="fas fa-file"></i> 500 pages</span>
+                    <span><i class="fas fa-chart-line"></i> 5/month free</span>
+                </div>
+                <a href="tools/site-audit.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="tool-card" data-name="Page Speed Test" data-category="analysis">
+                <span class="free-badge">FREE</span>
+                <div class="tool-icon"><i class="fas fa-tachometer-alt"></i></div>
+                <h3>Page Speed Test</h3>
+                <p>Test your page loading speed and get optimization tips.</p>
+                <div class="tool-meta">
+                    <span><i class="fas fa-clock"></i> Core Web Vitals</span>
+                    <span><i class="fas fa-chart-line"></i> Unlimited</span>
+                </div>
+                <a href="tools/page-speed.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="tool-card" data-name="Mobile Friendly Test" data-category="analysis">
+                <span class="free-badge">FREE</span>
+                <div class="tool-icon"><i class="fas fa-mobile-alt"></i></div>
+                <h3>Mobile Friendly</h3>
+                <p>Check if your website is mobile-friendly and responsive.</p>
+                <div class="tool-meta">
+                    <span><i class="fas fa-mobile"></i> Mobile view</span>
+                    <span><i class="fas fa-chart-line"></i> Unlimited</span>
+                </div>
+                <a href="tools/mobile-friendly.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Backlinks Category -->
+    <div class="category-section" data-category="backlinks">
+        <h2 class="category-title">🔗 Backlink Tools</h2>
+        <div class="tools-grid">
+            <div class="tool-card popular" data-name="Backlink Checker" data-category="backlinks">
+                <span class="popular-badge">Popular</span>
+                <span class="free-badge">FREE</span>
+                <div class="tool-icon"><i class="fas fa-link"></i></div>
+                <h3>Backlink Checker</h3>
+                <p>Analyze any website's backlink profile with domain authority metrics.</p>
+                <div class="tool-meta">
+                    <span><i class="fas fa-link"></i> 10K+ backlinks</span>
+                    <span><i class="fas fa-chart-line"></i> 10/day free</span>
+                </div>
+                <a href="tools/backlink-checker.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="tool-card" data-name="Broken Link Checker" data-category="backlinks">
+                <span class="free-badge">FREE</span>
+                <div class="tool-icon"><i class="fas fa-unlink"></i></div>
+                <h3>Broken Link Checker</h3>
+                <p>Find broken links on your website to improve user experience.</p>
+                <div class="tool-meta">
+                    <span><i class="fas fa-exclamation-triangle"></i> 404 errors</span>
+                    <span><i class="fas fa-chart-line"></i> 500 pages</span>
+                </div>
+                <a href="tools/broken-links.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="tool-card" data-name="Domain Authority Checker" data-category="backlinks">
+                <span class="free-badge">FREE</span>
+                <div class="tool-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Domain Authority</h3>
+                <p>Check domain authority, page authority, and spam score.</p>
+                <div class="tool-meta">
+                    <span><i class="fas fa-star"></i> DA/PA score</span>
+                    <span><i class="fas fa-chart-line"></i> Unlimited</span>
+                </div>
+                <a href="tools/domain-authority.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="tool-card" data-name="Competitor Backlinks" data-category="backlinks">
+                <span class="free-badge">FREE</span>
+                <div class="tool-icon"><i class="fas fa-users"></i></div>
+                <h3>Competitor Backlinks</h3>
+                <p>See where your competitors are getting their backlinks from.</p>
+                <div class="tool-meta">
+                    <span><i class="fas fa-trophy"></i> Top links</span>
+                    <span><i class="fas fa-chart-line"></i> 5/day free</span>
+                </div>
+                <a href="tools/competitor-backlinks.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Tools Category -->
+    <div class="category-section" data-category="content">
+        <h2 class="category-title">📝 Content Tools</h2>
+        <div class="tools-grid">
+            <div class="tool-card" data-name="Meta Tag Generator" data-category="content">
+                <span class="free-badge">FREE</span>
+                <div class="tool-icon"><i class="fas fa-code"></i></div>
+                <h3>Meta Tag Generator</h3>
+                <p>Generate SEO-friendly meta tags and Open Graph tags for your website.</p>
+                <div class="tool-meta">
+                    <span><i class="fas fa-tag"></i> Title & meta</span>
+                    <span><i class="fas fa-chart-line"></i> Unlimited</span>
+                </div>
+                <a href="tools/meta-tag-generator.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="tool-card" data-name="Sitemap Generator" data-category="content">
+                <span class="free-badge">FREE</span>
+                <div class="tool-icon"><i class="fas fa-sitemap"></i></div>
+                <h3>XML Sitemap Generator</h3>
+                <p>Create XML sitemaps for better search engine indexing.</p>
+                <div class="tool-meta">
+                    <span><i class="fas fa-file"></i> 500 URLs</span>
+                    <span><i class="fas fa-chart-line"></i> 10/month free</span>
+                </div>
+                <a href="tools/sitemap-generator.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="tool-card" data-name="Robots.txt Generator" data-category="content">
+                <span class="free-badge">FREE</span>
+                <div class="tool-icon"><i class="fas fa-robot"></i></div>
+                <h3>Robots.txt Generator</h3>
+                <p>Generate robots.txt file to control search engine crawling.</p>
+                <div class="tool-meta">
+                    <span><i class="fas fa-cog"></i> Easy setup</span>
+                    <span><i class="fas fa-chart-line"></i> Unlimited</span>
+                </div>
+                <a href="tools/robots-txt.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="tool-card" data-name="Canonical Tag Generator" data-category="content">
+                <span class="free-badge">FREE</span>
+                <div class="tool-icon"><i class="fas fa-link"></i></div>
+                <h3>Canonical Tag</h3>
+                <p>Generate canonical tags to prevent duplicate content issues.</p>
+                <div class="tool-meta">
+                    <span><i class="fas fa-check"></i> No duplicates</span>
+                    <span><i class="fas fa-chart-line"></i> Unlimited</span>
+                </div>
+                <a href="tools/canonical.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Technical SEO Category -->
+    <div class="category-section" data-category="technical">
+        <h2 class="category-title">⚙️ Technical SEO Tools</h2>
+        <div class="tools-grid">
+            <div class="tool-card popular" data-name="Rank Tracker" data-category="technical">
+                <span class="popular-badge">Popular</span>
+                <span class="free-badge">FREE</span>
+                <div class="tool-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Rank Tracker</h3>
+                <p>Track your keyword rankings on Google for any location.</p>
+                <div class="tool-meta">
+                    <span><i class="fas fa-globe"></i> 100 keywords</span>
+                    <span><i class="fas fa-chart-line"></i> Daily updates</span>
+                </div>
+                <a href="tools/rank-tracker.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="tool-card" data-name="SERP Checker" data-category="technical">
+                <span class="free-badge">FREE</span>
+                <div class="tool-icon"><i class="fas fa-search"></i></div>
+                <h3>SERP Checker</h3>
+                <p>See Google search results for any keyword in any location.</p>
+                <div class="tool-meta">
+                    <span><i class="fas fa-map-pin"></i> Local results</span>
+                    <span><i class="fas fa-chart-line"></i> 30/day free</span>
+                </div>
+                <a href="tools/serp-checker.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="tool-card" data-name="Schema Generator" data-category="technical">
+                <span class="free-badge">FREE</span>
+                <div class="tool-icon"><i class="fas fa-code"></i></div>
+                <h3>Schema Generator</h3>
+                <p>Create schema markup for rich snippets in search results.</p>
+                <div class="tool-meta">
+                    <span><i class="fas fa-star"></i> Rich snippets</span>
+                    <span><i class="fas fa-chart-line"></i> 10/day free</span>
+                </div>
+                <a href="tools/schema-generator.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="tool-card" data-name="Ping Tool" data-category="technical">
+                <span class="free-badge">FREE</span>
+                <div class="tool-icon"><i class="fas fa-bell"></i></div>
+                <h3>Ping Tool</h3>
+                <p>Ping search engines to index your new content faster.</p>
+                <div class="tool-meta">
+                    <span><i class="fas fa-send"></i> 10+ engines</span>
+                    <span><i class="fas fa-chart-line"></i> 50/day free</span>
+                </div>
+                <a href="tools/ping-tool.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- No Results Message -->
+    <div class="no-results" id="noResults">
+        <i class="fas fa-search"></i>
+        <h3>No tools found</h3>
+        <p>Try searching with different keywords</p>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>SEO Tools Pro</h3>
+                <p>Professional SEO tools to help you rank higher on search engines.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Tools</h4>
+                <ul>
+                    <li><a href="tools/keyword-research.html">Keyword Research</a></li>
+                    <li><a href="tools/backlink-checker.html">Backlink Checker</a></li>
+                    <li><a href="tools/seo-analyzer.html">SEO Analyzer</a></li>
+                    <li><a href="tools/rank-tracker.html">Rank Tracker</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul class="contact-info">
+                    <li><i class="fas fa-envelope"></i> support@seotoolspro.com</li>
+                    <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                    <li><i class="fas fa-map-marker-alt"></i> San Francisco, CA</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 SEO Tools Pro. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function filterTools() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const toolCards = document.querySelectorAll('.tool-card');
+            let visibleCount = 0;
+
+            toolCards.forEach(card => {
+                const toolName = card.getAttribute('data-name').toLowerCase();
+                const toolDesc = card.querySelector('p').textContent.toLowerCase();
+                
+                if (toolName.includes(searchInput) || toolDesc.includes(searchInput)) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Show/hide categories
+            document.querySelectorAll('.category-section').forEach(section => {
+                const visibleCards = section.querySelectorAll('.tool-card[style="display: flex;"]').length;
+                if (visibleCards === 0) {
+                    section.style.display = 'none';
+                } else {
+                    section.style.display = 'block';
+                }
+            });
+
+            // Show no results message
+            const noResults = document.getElementById('noResults');
+            if (visibleCount === 0) {
+                noResults.style.display = 'block';
+            } else {
+                noResults.style.display = 'none';
+            }
+        }
+
+        function filterByCategory(category) {
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Show/hide categories
+            if (category === 'all') {
+                document.querySelectorAll('.category-section').forEach(section => {
+                    section.style.display = 'block';
+                });
+                document.querySelectorAll('.tool-card').forEach(card => {
+                    card.style.display = 'flex';
+                });
+            } else {
+                document.querySelectorAll('.category-section').forEach(section => {
+                    if (section.dataset.category === category) {
+                        section.style.display = 'block';
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
+            }
+
+            // Clear search
+            document.getElementById('searchInput').value = '';
+            document.getElementById('noResults').style.display = 'none';
+        }
+
+        // Mobile menu
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
