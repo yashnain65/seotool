@@ -125,62 +125,31 @@ body {
     cursor: pointer;
 }
 
-/* Hero Section */
-.hero {
-    max-width: 1400px;
-    margin: 6rem auto 2rem;
-    padding: 4rem 2rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-}
-
-.hero-content h1 {
-    font-size: 3.5rem;
-    line-height: 1.2;
-    margin-bottom: 1.5rem;
-    font-weight: 800;
-}
-
-.highlight {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.hero-content p {
-    font-size: 1.2rem;
-    color: var(--gray-color);
-    margin-bottom: 2rem;
-}
-
-.hero-buttons {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
-}
-
-.trust-badges {
-    display: flex;
-    gap: 2rem;
-}
-
-.trust-badges span {
-    color: var(--gray-color);
-    font-size: 0.95rem;
-}
-
-.trust-badges i {
-    color: var(--success-color);
-    margin-right: 0.5rem;
-}
-
-.hero-image img {
-    width: 100%;
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+/* Hero Section Mobile Fix */
+@media only screen and (max-width: 600px) {
+    .hero {
+        grid-template-columns: 1fr !important;
+        text-align: center !important;
+        padding: 1rem !important;
+    }
+    
+    .hero-content h1 {
+        font-size: 2rem !important;
+    }
+    
+    .hero-image img {
+        max-width: 250px !important;
+        margin: 0 auto !important;
+    }
+    
+    .hero-buttons {
+        flex-direction: column !important;
+    }
+    
+    .hero-buttons a {
+        width: 100% !important;
+        margin: 0.3rem 0 !important;
+    }
 }
 
 /* Stats Section */
